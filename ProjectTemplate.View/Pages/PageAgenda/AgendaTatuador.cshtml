@@ -1,0 +1,189 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageAgenda.AgendaTatuador
+@{
+    @using System.IO;
+
+    ViewData["Title"] = "Sessões de Tatuagem";
+    Layout = "/Views/Shared/_LayoutAdminTatuador.cshtml";
+}
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/homeestudio.css" rel="stylesheet">
+
+<div class="container my-10">
+
+    <div class="mx-3 mt-3">
+        <h1>Agenda</h1>
+    </div>
+
+    <div class="row ml-3">
+        <div class="my-3 px-3 pt-3 pb-0 bg-white rounded shadow-sm col-lg-9 div-agenda">
+
+            <h6 class="border-bottom border-gray pb-2 mb-0">Sessões de Tatuagem a Confirmar</h6>
+
+            @foreach (var item in Model.Tatuador.Agenda)
+            {
+                var date1 = new DateTime(0001, 1, 1, 0, 0, 0);
+
+                @if (item.DataMarcação == date1 && item.Ativo == true)
+                {
+                    <div class="media text-muted pt-3 border-bottom border-gray row">
+                        <div class="col-lg-1 pb-1 pr-0">
+
+                            @*@if (File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                            {
+                                <img alt="32x32" class="mr-0 mt-2 rounded-circle" src="@("~/images/usuario/fotoCliente/"+ item.Cliente.IdCliente +".jpg")"
+                                     data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     asp-append-version="true">
+                            }
+                            else
+                            {
+                                <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     src="/images/icone-perfil.jpg">
+                            }*@
+                        </div>
+                        <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Estudio: </strong>@item.Estudio.NomeEstudio
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Data:</strong> A Confirmar
+                            </span>
+                        </div>
+                        <div class="col-lg-3 pb-1">
+                        </div>
+                    </div>
+                }
+            }
+
+            <br />
+
+            <h6 class="border-bottom border-gray pb-2 mb-0">Próximas Sessões De Tatuagens</h6>
+
+            @foreach (var item in Model.Tatuador.Agenda)
+            {
+
+                var ts = item.DataMarcação.Subtract(DateTime.Now);
+
+                @if (ts.TotalDays >= 0 && item.Ativo == true)
+                {
+                    <div class="media text-muted pt-3 border-bottom border-gray row">
+                        <div class="col-lg-1 pb-1 pr-0">
+
+                            @*@if (File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                            {
+                                <img alt="32x32" class="mr-0 mt-2 rounded-circle" src="@("~/images/usuario/fotoCliente/"+ item.Cliente.IdCliente +".jpg")"
+                                     data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     asp-append-version="true">
+                            }
+                            else
+                            {
+                                <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     src="/images/icone-perfil.jpg">
+                            }*@
+                        </div>
+                        <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Estudio: </strong>@item.Estudio.NomeEstudio
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                            </span>
+                        </div>
+                        <div class="col-lg-3 pb-1">
+                        </div>
+                    </div>
+                }
+            }
+
+            <br />
+
+            <h6 class="border-bottom border-gray pb-2 mb-0">Sessões Desmarcadas</h6>
+
+            @foreach (var item in Model.Tatuador.Agenda)
+            {
+
+                @if (item.Ativo == false)
+                {
+                    <div class="media text-muted pt-3 border-bottom border-gray row">
+                        <div class="col-lg-1 pb-1 pr-0">
+
+                            @*@if (File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                            {
+                                <img alt="32x32" class="mr-0 mt-2 rounded-circle" src="@("~/images/usuario/fotoCliente/"+ item.Cliente.IdCliente +".jpg")"
+                                     data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     asp-append-version="true">
+                            }
+                            else
+                            {
+                                <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     src="/images/icone-perfil.jpg">
+                            }*@
+                        </div>
+                        <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Estudio: </strong>@item.Estudio.NomeEstudio
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                            </span>
+                        </div>
+                    </div>
+                }
+            }
+
+            <br />
+
+            <h6 class="border-bottom border-gray pb-2 mb-0">Sessões De Tatuagens Já Realizadas</h6>
+
+            @foreach (var item in Model.Tatuador.Agenda)
+            {
+
+                var ts = item.DataMarcação.Subtract(DateTime.Now);
+                var date1 = new DateTime(0001, 1, 1, 0, 0, 0);
+
+                @if (ts.TotalDays < 0 && item.DataMarcação != date1 && item.Ativo == true)
+                {
+                    <div class="media text-muted pt-3 border-bottom border-gray row">
+                        <div class="col-lg-1 pb-1 pr-0">
+
+                            @*@if (File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                            {
+                                <img alt="32x32" class="mr-0 mt-2 rounded-circle" src="@("~/images/usuario/fotoCliente/"+ item.Cliente.IdCliente +".jpg")"
+                                     data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     asp-append-version="true">
+                            }
+                            else
+                            {
+                                <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                     src="/images/icone-perfil.jpg">
+                            }*@
+                        </div>
+                        <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Estudio: </strong>@item.Estudio.NomeEstudio
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                            </span>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

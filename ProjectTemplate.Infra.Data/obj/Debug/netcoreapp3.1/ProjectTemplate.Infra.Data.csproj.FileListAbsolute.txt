@@ -1,0 +1,30 @@
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.deps.json
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.runtimeconfig.json
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.runtimeconfig.dev.json
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.csproj.CopyComplete
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.genruntimeconfig.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.deps.json
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.runtimeconfig.json
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.runtimeconfig.dev.json
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.csproj.CopyComplete
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.Data\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.genruntimeconfig.cache

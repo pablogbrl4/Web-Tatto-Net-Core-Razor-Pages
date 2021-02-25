@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Lista Tatuagens";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";
+}
+
+@model BuscaShoppingViewModel
+
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+<link href="~/assets/css/selecionar.css" rel="stylesheet">
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+
+
+<style>
+</style>
+
+<style>
+
+    .card {
+        margin-bottom: .75rem !important;
+    }
+
+    .card-columns .card {
+        display: inline-block;
+        width: auto;
+    }
+</style>
+
+
+<div class="bg-white container my-10 card-columns-tatto">
+
+    <div class="card card-default p-0 m-0 adicionar-web-custom mb-2">
+        <div class="row card-body p-0 m-0">
+            <a asp-action="CadastroShopping" class="btn btn-outline-primary btn-lg"> Adicionar novo Produto <i class="ion-android-add btn-primary-add p-2"></i> </a>
+        </div>
+    </div>
+
+
+    <form asp-action="ListarShopping">
+
+        <div class="row">
+
+            <div id="selecionar" class="col-lg-5">
+                <label class="label-custom">
+                    <div class="div-span">
+                        <span class="span-custom">Tipos</span>
+                        <select class="selecionar-custom" asp-for="@Model.Pesquisa" name="pesquisa">
+                            <option value="Todos">Todos</option>
+                            <option value="Camiseta">Camiseta</option>
+                            <option value="Pingente">Pingente</option>
+                            <option value="Mascara">Mascara</option>
+                            <option value="Piercing">Piercing</option>
+                            <option value="Bermuda">Bermuda</option>
+                            <option value="Brinco">Brinco</option>
+                            <option value="Alargador">Alargador</option>
+                            <option value="Outros Produtos">Outros Produtos</option>
+                        </select>
+                        <div class="_1qCONy-"></div>
+
+                        <div class="div-svg">
+                            <svg class="svg-custom">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                    <path fill-rule="evenodd"
+                                          d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                    </path>
+                                </svg>
+                            </svg>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <div class="input-group-append col-lg-1 pb-2">
+                <button class="btn btn-primary rounded-circle mx-2 my-1 btn-lg btn-info" type="submit">
+                    <i class="ion-search"></i>
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <br />
+
+    <div class="card-columns">
+        @foreach (var foto in Model.Shoppings)
+        {
+
+        <div class="card mx-1">
+            <img class="card-img-top" src="@("~/images/estudio/FotosShoping/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg")" alt="Card image cap"
+                 asp-append-version="true">
+           
+            <div class="row a-foto-custom" style="margin-right: 0px; margin-left: 0px;">
+                <a asp-action="CadastroShopping" asp-route-id="@foto.Id" class="btn btn-outline-primary btn-lg col-lg-6">Editar</a>
+                <a asp-action="DeletarFoto" asp-route-id="@foto.Id" class="btn btn-outline-danger btn-lg col-lg-6">Deletar</a>
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+</div>
+
+
+<div id="btn-add">
+    <a asp-action="CadastroShopping"> <i class="ion-android-add btn-primary-add btn-new-custom"></i> </a>
+</div>
+
+<br />
+<br />

@@ -1,0 +1,93 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageHome.ListarEstudiosModel
+
+@{
+    ViewData["Title"] = "Lista Estúdios";
+    Layout = "/Pages/Shared/_LayoutCliente.cshtml";
+}
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+<link href="~/assets/css/estados.css" rel="stylesheet">
+
+<style>
+    p {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+</style>
+
+<div class="bg-white container my-10">
+
+    <form method="post">
+        <div class="estados">
+            <div class="div-tags">
+                <ul class="ul-tags">
+                    <li class="li-tags-1">
+                        <h2 class="h2-tags-1 pt-2">MG</h2>
+                    </li>
+                    <li class="li-tags-2">
+                        >
+                    </li>
+                    <li class="li-tags-3">
+                        <h2 class="h2-tags-3 pt-2">
+                            <a href="/PageHome/ListarEstudios">
+                                Estúdios em Belo Horizonte e Região
+                            </a>
+                        </h2>
+                    </li>
+                    <li class="escolher-estado">Estúdios em Belo Horizonte e região</li>
+                </ul>
+            </div>
+
+            <div class="div-listaestados">
+                <div class="div-estados">
+
+                    @foreach (var item in Model.Bairros)
+                    {
+                        <ul class="ul-estados">
+
+                            <li class="li-estados">
+                                <input type="submit" data-lurker-detail="linkshelf_item" data-lurker_state="25" class="a-estados"
+                                       value="@item"
+                                       asp-for="@Model.Bairro">
+                            </li>
+                        </ul>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+    <div class="card-columns">
+        @foreach (var item in Model.Estudios)
+        {
+            <a asp-page-handler="DetalhesEstudio" asp-route-id="@item.NomeDeUsuario">
+                <div class="card">
+
+                    @if (System.IO.File.Exists(@"wwwroot/images/estudio/fotoEstudio/" + @item.IdEstudio + ".jpg"))
+                    {
+                        <img class="card-img-top" src="@("~/images/estudio/fotoEstudio/" + @item.IdEstudio + ".jpg")" alt="Card image cap"
+                             asp-append-version="true">
+
+                    }
+                    else
+                    {
+                        <img class="card-img-top" src="/images/icone-perfil.jpg" alt="Card image cap">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeEstudio)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.TextoBibliografico)</p>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+
+</div>
+
+<br />
+<br />

@@ -1,0 +1,24 @@
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.deps.json
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.csproj.CopyComplete
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.deps.json
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.csproj.CopyComplete
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Application\obj\Debug\netcoreapp3.1\ProjectTemplate.Application.pdb

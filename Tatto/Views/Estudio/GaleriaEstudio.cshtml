@@ -1,0 +1,143 @@
+﻿@{
+    @using System.IO;
+    ViewData["Title"] = "Detalhes Estúdio";
+    Layout = "/Views/Shared/_LayoutEstudioLinks.cshtml";
+}
+
+@model Estudio
+
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+<link href="~/assets/css/selecionar.css" rel="stylesheet">
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+
+<div class="bg-white container my-10">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="title-box text-center">
+                <h3 class="title-a">
+                    Galeria
+                </h3>
+                <div class="line-mf"></div>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="GaleriaEstudio">
+
+        <div class="row">
+
+            <div id="selecionar" class="col-lg-6">
+                <label class="label-custom">
+                    <div class="div-span">
+                        <span class="span-custom">Estilo</span>
+                        <select class="selecionar-custom" asp-for="@Model.FotoTatto.EstiloTatto" name="estilo">
+                            <option value=" ">Todos</option>
+                            <option value="3D">3D</option>
+                            <option value="Aguarela">Aguarela</option>
+                            <option value="Blackwork">Blackwork</option>
+                            <option value="Bold line">Bold line</option>
+                            <option value="Chicano">Chicano</option>
+                            <option value="Comics">Comics</option>
+                            <option value="Dotwork">Dotwork</option>
+                            <option value="Floral">Floral</option>
+                            <option value="Ilustrativo">Ilustrativo</option>
+                            <option value="Maori">Maori</option>
+                            <option value="Minimalista">Minimalista</option>
+                            <option value="New School">New School</option>
+                            <option value="Old School">Old School</option>
+                            <option value="Oriental">Oriental</option>
+                            <option value="Ornamental">Ornamental</option>
+                            <option value="Realismo">Realismo</option>
+                            <option value="Single Line">Single Line</option>
+                            <option value="Surrealismo">Surrealismo</option>
+                            <option value="Tribal">Tribal</option>
+                            <option value="Outros Estilos">Outros Estilos</option>
+                        </select>
+
+                        <div class="_1qCONy-"></div>
+                        <div class="div-svg">
+                            <svg class="svg-custom">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                    <path fill-rule="evenodd"
+                                          d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                    </path>
+                                </svg>
+                            </svg>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <div id="selecionar" class="col-lg-5">
+                <label class="label-custom">
+                    <div class="div-span">
+                        <span class="span-custom">Partes Do Corpo</span>
+                        <select class="selecionar-custom" asp-for="@Model.FotoTatto.ParteDoCorpo" name="parteCorpo">
+                            <option value=" ">Todas</option>
+                            <option value="Abdômen">Abdômen</option>
+                            <option value="AnteBraço">AnteBraço</option>
+                            <option value="Axila">Axila</option>
+                            <option value="Braço">Braço</option>
+                            <option value="Cabeça">Cabeça</option>
+                            <option value="Canela">Canela</option>
+                            <option value="Costas">Costas</option>
+                            <option value="Coxa">Coxa</option>
+                            <option value="Dedos">Dedos</option>
+                            <option value="Mão">Mão</option>
+                            <option value="Nuca">Nuca</option>
+                            <option value="Panturrilha">Panturrilha</option>
+                            <option value="Pé">Pé</option>
+                            <option value="Peito">Peito</option>
+                            <option value="Pescoço">Pescoço</option>
+                            <option value="Punho">Punho</option>
+                            <option value="Rosto">Rosto</option>
+                            <option value="Testa">Testa</option>
+                            <option value="Outras Partes">Outras Partes</option>
+                        </select>
+                        <div class="_1qCONy-"></div>
+
+                        <div class="div-svg">
+                            <svg class="svg-custom">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                    <path fill-rule="evenodd"
+                                          d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                    </path>
+                                </svg>
+                            </svg>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <div class="input-group-append col-lg-1 pb-2">
+                <button class="btn btn-primary rounded-circle mx-2 my-1 btn-lg btn-info" type="submit">
+                    <i class="ion-search"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <div class="card-columns mt-2">
+        @foreach (var foto in Model.FotosTattos)
+        {
+            @if (File.Exists(@"wwwroot/images/estudio/FotosTatuagens/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg"))
+            {
+                <div class="card mx-1">
+                    <img class="card-img-top" src="@("~/images/estudio/FotosTatuagens/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg")" alt="Card image cap"
+                         asp-append-version="true">
+                    <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+<br />
+<br />

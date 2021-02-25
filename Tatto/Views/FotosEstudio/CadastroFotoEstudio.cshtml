@@ -1,0 +1,137 @@
+﻿@section Scripts
+{
+    <script src="~/js/tatto.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    body {
+        margin: 0px;
+        height: 100vh;
+        background: #333;
+    }
+
+    .center {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-input {
+        width: 250px;
+        padding: 20px;
+        background: #fff;
+        border: 2px dashed #555;
+    }
+
+        .form-input input {
+            display: none;
+        }
+
+        .form-input label {
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            font-size: 15px;
+            font-family: "Open Sans",sans-serif;
+            text-transform: Uppercase;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .form-input img {
+            width: 100% !important;
+            margin-top: 10px;
+        }
+</style>
+
+@{ ViewData["Title"] = "Cadastro Estúdio";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";}
+@model Tatto.Models.FotosEstudio
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+
+<div class="bg-white my-10">
+
+    <div id="CadastroFotosEstudio" class="container">
+
+        <form asp-action="InserirDadosFotosEstudio" enctype="multipart/form-data">
+
+            <h3 class="pt-5">Adicionar Foto do Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="center">
+                                <div class="form-input">
+                                    <label for="file-ip-1"
+                                           asp-for="ImageFile">Upload Image</label>
+                                    <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);"
+                                           asp-for="ImageFile">
+                                    <div class="preview">
+                                        <img id="file-ip-1-preview" src="@("~/images/estudio/FotosEstudios/" + Model.IdEstudio + "/" + Model.ImageName + ".jpg")"
+                                             asp-append-version="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="ImageName">Nome Da Foto</label>
+                                <input type="text" class="form-control" id="ImageName" placeholder="Nome Da Foto"
+                                       onchange="consultarDados.consultarNomeFoto(this.value, 'FotosEstudio')"
+                                       asp-for="@Model.ImageName">
+                            <span asp-validation-for="@Model.ImageName" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" id="id" name="Id" asp-for="@Model.Id">
+                        <input type="hidden" id="IdEstudio" name="IdEstudio" asp-for="@Model.IdEstudio">
+                        <input type="hidden" id="pasta" value="Estudio">
+                        <input type="hidden" id="subpasta" value="FotosTatuagens">
+                        <input type="hidden" id="outrapasta" value="@Model.IdEstudio">
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <h3 class="mt-5">Conclusão</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-success btn-block px-4">&nbsp;&nbsp; Salvar &nbsp;&nbsp;</button>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+
+                    </div>
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-danger btn-block px-4 pull-right"> &nbsp; Cancelar &nbsp;</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+

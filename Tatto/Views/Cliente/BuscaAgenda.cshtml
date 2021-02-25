@@ -1,0 +1,79 @@
+﻿
+@{ 
+    ViewData["Title"] = "Listar Agenda";
+    Layout = "/Views/Shared/_LayoutUsuario.cshtml";
+
+    }
+
+@model List<Agenda>;
+
+    <link href="~/assets/css/tatuagens.css" rel="stylesheet">
+
+
+    <div class="bg-white my-10">
+        <div class="card container">
+
+            <div class="mx-3 mt-3">
+                <h1>Agenda</h1>
+
+                <p>
+                    <a asp-action="CadastroAgenda">Criar nova Agenda</a>
+                </p>
+            </div>
+
+            <div class="card-body">
+                @*<div class="form-inline mb-3">
+                        <form asp-action="BuscaAgenda">
+                            <div class="input-group mb-3">
+                                <input type="text" asp-for="@Model.Pesquisa" name="pesquisa" class="form-control" placeholder="Pesquisa por Nome" aria-label="Pesquisa por Nome" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="ion-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>*@
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Agenda.DataMarcação)*@
+                                "DataMarcação"
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Agenda.DatadeFundação)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Agenda.Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Agenda.Telefone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Agenda.OutroTelefone)
+                                    </th>*@
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.DataMarcação)</td>
+                                @*<td>@Html.DisplayFor(modelItem => item.DatadeFundação)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.OutroTelefone)</td>*@
+                                <td>
+                                    <a asp-action="CadastroAgenda" asp-route-id="@item.Id">Editar</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Desmarcar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

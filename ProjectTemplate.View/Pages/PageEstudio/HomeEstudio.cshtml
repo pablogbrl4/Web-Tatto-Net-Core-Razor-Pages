@@ -1,0 +1,547 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageEstudio.HomeEstudioModel
+
+@{
+    int cont = 0;
+
+    ViewData["Title"] = "Home Estúdio";
+    Layout = "/Pages/Shared/_LayoutAdminEstudio.cshtml";
+}
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/homeestudio.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+
+<style>
+    body {
+        font-family: Arial;
+    }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #007bff !important;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border-top: none;
+    }
+</style>
+
+<div class="container my-10 bg-white">
+
+
+    <div class="card card-default p-0 m-0 adicionar-web-custom">
+        <div class="row card-body p-0 m-0">
+            <a asp-controller="Agenda" asp-action="CadastroAgendaByEstudio" class="btn btn-outline-primary btn-lg"> Nova Seção <i class="ion-android-add btn-primary-add p-2"></i> </a>
+        </div>
+    </div>
+
+    <div class="row div-sessoes">
+        <div class="my-3 p-0 rounded shadow-sm col-lg-9 div-agenda">
+
+
+            <div class="tab">
+                <div class="row">
+                    <button class="tablinks col-lg-4" onclick="openCity(event, 'A')">Sessões a serem definidas</button>
+                    <button class="tablinks col-lg-4" onclick="openCity(event, 'B')">Sessões do dia</button>
+                    <button class="tablinks col-lg-4" onclick="openCity(event, 'C')">Sessões da semana</button>
+                </div>
+                <div class="row">
+                    <button class="tablinks col-lg-4" onclick="openCity(event, 'D')">Sessões futuras</button>
+                    <button class="tablinks col-lg-4" onclick="openCity(event, 'E')">Sessões desmarcadas</button>
+                    <button class="tablinks col-lg-4" onclick="openCity(event, 'F')">Sessões já cumpridas</button>
+                </div>
+            </div>
+
+            <div id="A" class="tabcontent pb-0">
+                @foreach (var item in Model.Agenda)
+                {
+                    var date1 = new DateTime(0001, 1, 1, 0, 0, 0);
+
+                    @if (item.DataMarcação == date1 && item.Ativo == true)
+                    {
+
+                        <div class="media text-muted pt-3 border-bottom border-gray row">
+                            <div class="col-lg-1 pb-1 pr-0 pl-0 text-center">
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-1" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-1" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-1"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 42px; height: 42px;">
+                                }
+
+                            </div>
+                            <div class="media-body mt-1 pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    @if (@item.Tatuador != null)
+                                    {
+                                        <strong class="text-gray-dark">Tatuador: </strong>@item.Tatuador.PrimeiroNome
+                                    }
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Data:</strong> A Confirmar
+                                </span>
+                            </div>
+                            <div class="col-lg-3 pb-1">
+                                <span class="d-flex justify-content-custom mt-2">
+                                    <a class="btn btn-success mr-1" asp-controller="Agenda" asp-action="EditarAgenda" asp-route-id="@item.Id">Confirmar</a>
+                                    <a class="btn btn-danger" asp-controller="Agenda" asp-action="DeletarAgenda" asp-route-id="@item.Id">Excluir</a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+
+            <div id="B" class="tabcontent pb-0">
+                @foreach (var item in Model.Agenda)
+                {
+                    var ts = item.DataMarcação.Subtract(DateTime.Now);
+
+                    @if (ts.TotalDays >= 0 && ts.TotalDays <= 1 && item.Ativo == true)
+                    {
+
+
+                        <div class="media text-muted pt-3 border-bottom border-gray row">
+                            <div class="col-lg-1 pb-1 pr-0 pl-0 text-center">
+
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 42px; height: 42px;">
+                                }
+
+                            </div>
+                            <div class="media-body pb-3 mb-0 small lh-125 col-lg-6 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    @if (@item.Tatuador != null)
+                                    {
+                                        <strong class="text-gray-dark">Tatuador: </strong>@item.Tatuador.PrimeiroNome
+                                    }
+
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                                </span>
+                            </div>
+                            <div class="col-lg-6 pb-1">
+                                <span class="d-flex justify-content-custom mt-2 row">
+                                    <a class="btn btn-agenda btn-success mr-1" href="@("https://api.whatsapp.com/send?phone=55" + item.Cliente.Telefone)">WhatsApp</a>
+                                    <a class="btn btn-agenda btn-primary mr-1" asp-controller="Agenda" asp-action="ContratoMenorByEstudio" asp-route-id="@item.IdCliente">Contrato</a>
+                                    <a class="btn btn-agenda btn-secondary mr-1" asp-controller="Agenda" asp-action="EditarAgenda" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-agenda btn-danger mr-1" asp-controller="Agenda" asp-action="DesmacarAgendaByEstudio" asp-route-id="@item.Id">Desmarcar</a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+
+            <div id="C" class="tabcontent pb-0">
+                @foreach (var item in Model.Agenda)
+                {
+                    var ts = item.DataMarcação.Subtract(DateTime.Now);
+
+                    @if (ts.TotalDays > 1 && ts.TotalDays <= 7 && item.Ativo == true)
+                    {
+                        <div class="media text-muted pt-3 border-bottom border-gray row">
+                            <div class="col-lg-1 pb-1 pr-0 pl-0 text-center">
+
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 42px; height: 42px;">
+                                }
+
+                            </div>
+                            <div class="media-body pb-3 mb-0 small lh-125 col-lg-6 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    @if (item.Tatuador != null)
+                                    {
+                                        <strong class="text-gray-dark">Tatuador: </strong>@item.Tatuador.PrimeiroNome
+                                    }
+
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                                </span>
+                            </div>
+                            <div class="col-lg-6 pb-1">
+                                <span class="d-flex justify-content-custom mt-2 row">
+                                    <a class="btn btn-agenda btn-success mr-1" href="@("https://api.whatsapp.com/send?phone=55" + item.Cliente.Telefone)">WhatsApp</a>
+                                    <a class="btn btn-agenda btn-primary mr-1" asp-controller="Agenda" asp-action="ContratoMenorByEstudio" asp-route-id="@item.IdCliente">Contrato</a>
+                                    <a class="btn btn-agenda btn-secondary mr-1" asp-controller="Agenda" asp-action="EditarAgenda" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-agenda btn-danger mr-1" asp-controller="Agenda" asp-action="DesmacarAgendaByEstudio" asp-route-id="@item.Id">Desmarcar</a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div id="D" class="tabcontent pb-0">
+                @foreach (var item in Model.Agenda)
+                {
+                    var ts = item.DataMarcação.Subtract(DateTime.Now);
+
+                    @if (ts.TotalDays > 7 && item.Ativo == true && item.Cliente != null)
+                    {
+                        <div class="media text-muted pt-3 border-bottom border-gray row">
+                            <div class="col-lg-1 pb-1 pr-0 pl-0 text-center">
+
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 42px; height: 42px;">
+                                }
+
+                            </div>
+                            <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    @if (@item.Tatuador != null)
+                                    {
+                                        <strong class="text-gray-dark">Tatuador: </strong>@item.Tatuador.PrimeiroNome
+                                    }
+
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                                </span>
+                            </div>
+                            <div class="col-lg-3 pb-1">
+                                <span class="d-flex justify-content-custom mt-2">
+                                    <a class="btn btn-primary mr-1" asp-controller="Agenda" asp-action="ContratoMenorByEstudio" asp-route-id="@item.IdCliente">Contrato</a>
+                                    <a class="btn btn-secondary mr-1" asp-controller="Agenda" asp-action="EditarAgenda" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-danger" asp-controller="Agenda" asp-action="DesmacarAgendaByEstudio" asp-route-id="@item.Id">Desmarcar</a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div id="E" class="tabcontent pb-0">
+                @foreach (var item in Model.Agenda)
+                {
+                    @if (item.Ativo == false)
+                    {
+                        <div class="media text-muted pt-3 border-bottom border-gray row">
+                            <div class="col-lg-1 pb-1 pr-0 pl-0 text-center">
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 42px; height: 42px;">
+                                }
+
+                            </div>
+                            <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Tatuador: </strong>@item.Tatuador.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                                </span>
+                            </div>
+                            <div class="col-lg-3 pb-1">
+                                <span class="d-flex justify-content-custom mt-2">
+                                    <a class="btn btn-secondary mr-1" asp-controller="Agenda" asp-action="EditarAgenda" asp-route-id="@item.Id">Remarcar</a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div id="F" class="tabcontent pb-0">
+                @foreach (var item in Model.Agenda)
+                {
+                    var ts = item.DataMarcação.Subtract(DateTime.Now);
+                    var date1 = new DateTime(0001, 1, 1, 0, 0, 0);
+
+                    @if (ts.TotalDays < 0 && item.Ativo == true && item.DataMarcação != date1 && item.Cliente != null)
+                    {
+                        <div class="media text-muted pt-3 border-bottom border-gray row">
+
+                            <div class="col-lg-1 pb-1 pr-0 pl-0 text-center">
+
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 42px; height: 42px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 42px; height: 42px;">
+                                }
+
+                            </div>
+                            <div class="media-body pb-3 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Cliente: </strong>@item.Cliente.PrimeiroNome
+                                </span>
+                                <span class="d-block">
+                                    @if (@item.Tatuador != null)
+                                    {
+                                        <strong class="text-gray-dark">Tatuador: </strong>@item.Tatuador.PrimeiroNome
+                                    }
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Data:</strong> @item.DataMarcação
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="my-3 bg-white rounded shadow-sm p-0">
+                <h6 class="border-bottom border-gray text-center m-0 p-2 pt-3">Aniversáriantes</h6>
+
+                <h6 class="border-bottom border-gray text-center m-3 p-1">Hoje, @DateTime.Today.Day/@DateTime.Today.Month/@DateTime.Today.Year </h6>
+
+                <div class=" my-0 mx-3">
+                    @foreach (var item in Model.Contatos)
+                    {
+                        @if (item.Cliente.DataDeNascimento == "dia" && item.Cliente != null)
+                        {
+                            <div class="media text-muted border-bottom border-gray m-0">
+
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 25px; height: 25px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 25px; height: 25px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 25px; height: 25px;">
+                                }
+
+                                <div class="media-body pb-3 mb-0 small lh-125 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">@item.Cliente.PrimeiroNome</strong>
+                                    </div>
+                                </div>
+                                <a href="@("https://api.whatsapp.com/send?phone=55" + item.Cliente.Telefone)" target="_blank" class="py-1">
+                                    <img alt="32x32" class="ml-1" src="~/assets/img/whatsapp.png" style="width: 27px; height: 27px;" asp-append-version="true">
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class=" my-0 mx-3">
+                    @foreach (var item in Model.Contatos)
+                    {
+                        @if (item.Cliente.DataDeNascimento == "mes" && item.Cliente != null)
+                        {
+                            @if (cont == 0)
+                            {
+                                <h6 class="border-bottom border-gray text-center m-3 p-1">Mês</h6>
+                                cont += 1;
+                            }
+
+                            <div class="media text-muted border-bottom border-gray m-0">
+
+                                @if (item.Cliente.IdCliente != 0)
+                                {
+                                    @if (System.IO.File.Exists(@"wwwroot/images/usuario/fotoCliente/" + @item.Cliente.IdCliente + ".jpg"))
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 25px; height: 25px;"
+                                             src="@("~/images/usuario/fotoCliente/" + item.Cliente.IdCliente + ".jpg")"
+                                             asp-append-version="true">
+                                    }
+                                    else
+                                    {
+                                        <img alt="32x32" class="mr-2 rounded-circle mt-2" data-holder-rendered="true" style="width: 25px; height: 25px;"
+                                             src="/images/icone-perfil.jpg">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 25px; height: 25px;">
+                                }
+
+                                <div class="media-body pb-3 mb-0 small lh-125 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">@item.Cliente.PrimeiroNome</strong>
+                                    </div>
+                                </div>
+                                <a href="@("https://api.whatsapp.com/send?phone=55" + item.Cliente.Telefone)" target="_blank" class="py-1">
+                                    <img alt="32x32" class="ml-1" src="~/assets/img/whatsapp.png" style="width: 27px; height: 27px;" asp-append-version="true">
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="btn-add">
+    <a asp-controller="Agenda" asp-action="CadastroAgendaByEstudio"> <i class="ion-android-add btn-primary-add btn-new-custom"></i> </a>
+</div>
+
+
+<br />
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>

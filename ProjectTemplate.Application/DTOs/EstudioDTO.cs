@@ -1,0 +1,146 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using ProjectTemplate.Domain.Entities;
+
+namespace ProjectTemplate.Application.DTOs
+{
+    public class EstudioDTO : BaseEntidadeDTO
+    {
+        public EstudioDTO() { }
+
+        //[NotMapped]
+        //public IList<DepoimentosDTO> Depoimentos { get; set; } = new List<DepoimentosDTO>();
+
+        //[NotMapped]
+        //public IList<FotoTattoDTO> FotosTattos { get; set; } = new List<FotoTattoDTO>();
+
+        //[NotMapped]
+        //public FotoTattoDTO FotoTatto { get; set; } = new FotoTattoDTO();
+
+        //[NotMapped]
+        //public IList<FotosEstudioDTO> FotosEstudio { get; set; } = new List<FotosEstudioDTO>();
+
+        //[NotMapped]
+        //public IList<ShoppingDTO> Shopping { get; set; } = new List<ShoppingDTO>();
+
+        //[NotMapped]
+        //public IList<Estudio_TatuadorDTO> EstudioTatuador { get; set; } = new List<Estudio_TatuadorDTO>();
+
+        //[NotMapped]
+        //public IList<HorarioDeFuncionamentoEstudioDTO> HorarioDeFuncionamentoEstudio { get; set; } = new List<HorarioDeFuncionamentoEstudioDTO>();
+
+        //[NotMapped]
+        //public IList<ContatosDTO> Contatos { get; set; } = new List<ContatosDTO>();
+
+        //[NotMapped]
+        //public IList<AgendaDTO> Agenda { get; set; } = new List<AgendaDTO>();
+
+        internal void Update(EstudioDTO novoCadastro) // Atualizar cadastro do Tatuador
+        {
+            this.NomeEstudio = novoCadastro.NomeEstudio;
+            this.NomeDeUsuario = novoCadastro.NomeDeUsuario;
+
+            this.Instagram = novoCadastro.Instagram;
+            this.Facebook = novoCadastro.Facebook;
+            this.Twitter = novoCadastro.Twitter;
+            this.LinkedIn = novoCadastro.LinkedIn;
+            this.YouTube = novoCadastro.YouTube;
+            this.WhatsApp = novoCadastro.WhatsApp;
+            this.TextoBibliografico = novoCadastro.TextoBibliografico;
+            this.FraseImpactante = novoCadastro.FraseImpactante;
+
+            this.Email = novoCadastro.Email;
+            this.Telefone = novoCadastro.Telefone;
+            this.OutroTelefone = novoCadastro.OutroTelefone;
+            this.CNPJ = novoCadastro.CNPJ;
+            this.DatadeFundacao = novoCadastro.DatadeFundacao;
+
+            this.CEP = novoCadastro.CEP;
+            this.Endereco = novoCadastro.Endereco;
+            this.Numero = novoCadastro.Numero;
+            this.Bairro = novoCadastro.Bairro;
+            this.Complemento = novoCadastro.Complemento;
+            this.Cidade = novoCadastro.Cidade;
+            this.UF = novoCadastro.UF;
+        }
+
+        public int IdEstudio { get; set; }
+
+        [Required(ErrorMessage = "Nome De Usuário é obrigatório")]
+        public string NomeDeUsuario { get; set; }
+
+        // Dados Estudio
+        [MinLength(5, ErrorMessage = "Nome deve ter no mínimo 5 caracteres")]
+        [MaxLength(50, ErrorMessage = "Nome deve ter no máximo 50 caracteres")]
+        [Required(ErrorMessage = "PrimeiroNome é obrigatório")]
+        public string NomeEstudio { get; set; } = "";
+
+        [Required(ErrorMessage = "Email é obrigatório")]
+        public string Email { get; set; } = "";
+
+        [Required(ErrorMessage = "Telefone é obrigatório")]
+        public string Telefone { get; set; } = "";
+
+        //[Required(ErrorMessage = "OutroTelefone é obrigatório")]
+        public string OutroTelefone { get; set; } = "";
+
+        //[Required(ErrorMessage = "CNPJ é obrigatório")]
+        public string CNPJ { get; set; } = "";
+
+        //[Required(ErrorMessage = "Data de Fundação é obrigatório")]
+        public string DatadeFundacao { get; set; } = "";
+
+
+        // Redes Sociais do Estudio:
+        public string Instagram { get; set; } = "";
+        public string Facebook { get; set; } = "";
+        public string Twitter { get; set; } = "";
+        public string LinkedIn { get; set; } = "";
+        public string YouTube { get; set; } = "";
+        public string WhatsApp { get; set; } = "";
+
+
+        // Texto Bibliografico Estudio
+        public string TextoBibliografico { get; set; } = "";
+        public string FraseImpactante { get; set; } = "";
+
+
+        // Endereço do Estudio
+        [Required(ErrorMessage = "CEP é obrigatório")]
+        public string CEP { get; set; } = "";
+
+        [Required(ErrorMessage = "Endereco é obrigatório")]
+        public string Endereco { get; set; } = "";
+
+        [Required(ErrorMessage = "Numero é obrigatório")]
+        public string Numero { get; set; } = "";
+
+        [Required(ErrorMessage = "Bairro é obrigatório")]
+        public string Bairro { get; set; } = "";
+
+        [Required(ErrorMessage = "Complemento é obrigatório")]
+        public string Complemento { get; set; } = "";
+
+        [Required(ErrorMessage = "Cidade é obrigatório")]
+        public string Cidade { get; set; } = "";
+
+        [Required(ErrorMessage = "UF é obrigatório")]
+        public string UF { get; set; } = "";
+
+
+        [NotMapped]
+        public IList<HorarioDeFuncionamentoEstudio> HorarioDeFuncionamentoEstudio { get; set; }
+
+        [NotMapped]
+        public IList<Agenda> Agenda { get; set; }
+
+        [NotMapped]
+        public IList<FotoTatto> FotoTatto { get; set; }
+
+        [NotMapped]
+        public IList<Shopping> Shopping { get; set; }
+
+
+    }
+}

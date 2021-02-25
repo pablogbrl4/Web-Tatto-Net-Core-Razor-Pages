@@ -1,0 +1,32 @@
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.deps.json
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.csproj.CopyComplete
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.deps.json
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Application.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Infra.Data.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.csproj.CopyComplete
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Infra.IoC\obj\Debug\netcoreapp3.1\ProjectTemplate.Infra.IoC.pdb

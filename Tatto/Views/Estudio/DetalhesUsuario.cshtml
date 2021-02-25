@@ -1,0 +1,189 @@
+﻿@section Scripts
+{
+    @using System.IO;
+    <script src="~/js/tatto.js"></script>
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Cadastro Usuário";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";
+}
+@model Tatto.Models.Estudio
+
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+
+<div class="bg-white my-10">
+
+    <div id="cadastrousuario" class="container">
+
+        <h3 class="mt-5">Dados Cliente</h3>
+
+        <div class="card card-default">
+            <div class="row card-body">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            @if (File.Exists(@"wwwroot/images/usuario/fotoUsuario/" + Model.Contatos[0].Usuario.IdUsuario + ".jpg"))
+                            {
+                                <img src="@("~/images/usuario/fotoUsuario/"+ Model.Contatos[0].Usuario.IdUsuario +".jpg")" class="img img-responsive img-rounded img-fluid"
+                                     asp-append-version="true">
+                            }
+                            else
+                            {
+                                <img class="img img-responsive img-rounded img-fluid"
+                                     src="/images/icone-perfil.jpg">
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="nomeCliente">Primeiro Nome</label>
+                        <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente" disabled
+                               asp-for="@Model.Contatos[0].Usuario.PrimeiroNome">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="sobrenomeCompleto">Sobrenome Completo</label>
+                        <input type="text" class="form-control" id="sobrenomeCompleto" placeholder="Sobrenome Completo" disabled
+                               asp-for="@Model.Contatos[0].Usuario.SobrenomeCompleto">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="telefone">Telefone (Whatss App)</label>
+                        <input type="text" class="form-control" id="telefone" placeholder="Ex.: (00) 00000-0000" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Telefone">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="email@email.com" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Email">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="dataNascimento">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="dataNascimento" placeholder="Data de Nascimento" disabled
+                               asp-for="@Model.Contatos[0].Usuario.DataDeNascimento">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="outro_telefone">Outro Telefone</label>
+                        <input type="text" class="form-control" id="outro_telefone" placeholder="Outro Telefone" disabled
+                               asp-for="@Model.Contatos[0].Usuario.OutroTelefone">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="id" name="IdUsuario" asp-for="@Model.Contatos[0].Usuario.IdUsuario">
+        <input type="hidden" id="idInt" name="IdUsuario" asp-for="@Model.Id">
+
+        <h3 class="pt-5">Endereço</h3>
+
+        <div class="card card-default">
+            <div class="row card-body">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="cep">CEP</label>
+                        <input type="text" class="form-control" id="cep" placeholder="CEP" disabled
+                               asp-for="@Model.Contatos[0].Usuario.CEP" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="rua">Rua</label>
+                        <input type="text" class="form-control" id="rua" placeholder="Rua" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Endereco">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="numero">Numero</label>
+                        <input type="text" class="form-control" id="numero" placeholder="Numero" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Numero">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="bairro">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" placeholder="Bairro" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Bairro">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="complemento">Complemento</label>
+                        <input type="text" class="form-control" id="complemento" placeholder="Complemento" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Complemento">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="cidade">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled
+                               asp-for="@Model.Contatos[0].Usuario.Cidade">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="UF">UF</label>
+                        <input type="text" class="form-control" id="cidade" placeholder="Cidade" disabled
+                               asp-for="@Model.Contatos[0].Usuario.UF">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <h3 class="pt-5">Sessões de Tatuagem</h3>
+
+        <div class="card card-default">
+            <div class="row card-body">
+                <div class="col-md-4">
+                    <table class="table">
+                        <tbody>
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tatuador
+                                </th>
+                                <th>
+                                    Data Da Sessão
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Agenda)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Tatuador[0].PrimeiroNome)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.DataMarcação)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-5">Conclusão</h3>
+
+        <div class="card card-default mt-5">
+            <div class="row card-body">
+                <div class="form-group col-md-3 mb-1">
+                    @if (Model.Contatos[0].Usuario.IdUsuario == null)
+                    {
+                        <a asp-area="" asp-controller="Cliente" asp-action="CadastroUsuarioByEstudio" asp-route-id="@Model.Contatos[0].Usuario.Id"
+                           class="btn btn-success btn-block px-4">Editar Contato</a>
+                    }
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                </div>
+
+                <div class="form-group col-md-3 mb-1">
+                    <a asp-area="" asp-controller="Cliente" asp-action="BuscaContatos"
+                       class="btn btn-danger btn-block px-4 pull-right">Voltar</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageEstudio.ListarFotosEstudiosModel
+
+@{
+    ViewData["Title"] = "Lista Tatuagens";
+    Layout = "/Pages/Shared/_LayoutAdminEstudio.cshtml";
+}
+
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+
+
+<div class="bg-white container my-10">
+
+    <div class="card card-default p-0 m-0 adicionar-web-custom mb-2">
+        <div class="row card-body p-0 m-0">
+            <a asp-action="CadastroFotoEstudio" class="btn btn-outline-primary btn-lg"> Adicionar nova foto <i class="ion-android-add btn-primary-add p-2"></i> </a>
+        </div>
+    </div>
+
+    <div class="card-columns">
+        @foreach (var foto in Model.FotosEstudios)
+        {
+
+            <div class="card mx-1">
+                <img class="card-img-top" src="@("~/images/estudio/FotosEstudios/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg")" alt="Card image cap"
+                     asp-append-version="true">
+                <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                    <a asp-action="CadastroFotoEstudio" asp-route-id="@foto.Id" class="btn btn-outline-primary btn-lg col-lg-6">Editar</a>
+                    <a asp-action="DeletarFoto" asp-route-id="@foto.Id" class="btn btn-outline-danger btn-lg col-lg-6">Deletar</a>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<div id="btn-add">
+    <a asp-action="CadastroFotoEstudio"> <i class="ion-android-add btn-primary-add btn-new-custom"></i> </a>
+</div>

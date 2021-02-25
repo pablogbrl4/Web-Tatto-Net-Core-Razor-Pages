@@ -1,0 +1,56 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageTatuador.GaleriaTatuadorModel
+
+@{
+
+    //if (HomeController.getUserNow() == "Tatuador")
+    //{
+    //    Layout = "/Pages/Shared/_LayoutAdminTatuador.cshtml";
+    //}
+    //else
+    //{
+    Layout = "/Pages/Shared/_LayoutTatuador.cshtml";
+    //}
+}
+
+<link href="~/assets/css/index.css" rel="stylesheet">
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+
+<section id="galeria" class="my-10">
+    <div class="bg-white container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box text-center">
+                    <h3 class="title-a">
+                        Galeria
+                    </h3>
+                    <p class="subtitle-a">
+                        Se delicie com nossas tatuagens.
+                    </p>
+                    <div class="line-mf"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card-columns">
+                @foreach (var foto in Model.FotosTattos)
+                {
+                    @if (System.IO.File.Exists(@"wwwroot/images/estudio/FotosTatuagens/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg"))
+                    {
+                        <a href="estudio.html">
+                            <div class="card">
+                                <img class="card-img-top" src="@("~/images/estudio/FotosTatuagens/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg")" alt="Card image cap"
+                                     asp-append-version="true">
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+

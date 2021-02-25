@@ -1,0 +1,269 @@
+﻿@section Scripts
+{
+    <script src="~/js/cep.js"></script>
+    <script src="~/js/tatto.js"></script>
+
+    <script src="~/js/teste.js"></script>
+
+    <script src="~/js/jcrop/jquery.Jcrop.min.js"></script>
+    <script src="~/js/ImageCrop.js"></script>
+
+    <script src="~/js/jquery.maskedinput.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Cadastro Usuário";
+    Layout = "/Views/Shared/_LayoutUsuario.cshtml";
+}
+@model Tatto.Models.Usuario
+
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+
+
+<div class="bg-white my-10">
+
+    <div id="cadastrousuario" class="container">
+
+        <form asp-action="inserirdadosusuario" method="post">
+
+            <h3 class="mt-5">Foto Perfil</h3>
+
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <img src="@("~/images/usuario/fotoUsuario/"+ Model.IdUsuario +".jpg")" class="img img-responsive img-rounded img-fluid"
+                                     asp-append-version="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="img input-custom-img" id="imgInp" name="files" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Dados Pessoais</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="nomeCliente">Primeiro Nome</label>
+                            <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente"
+                                   asp-for="@Model.PrimeiroNome">
+                            <span asp-validation-for="@Model.PrimeiroNome" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="sobrenomeCompleto">Sobrenome Completo</label>
+                            <input type="text" class="form-control" id="sobrenomeCompleto" placeholder="Sobrenome Completo"
+                                   asp-for="@Model.SobrenomeCompleto">
+                            <span asp-validation-for="@Model.SobrenomeCompleto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Sexo">Sexo</label>
+                            <select class="form-control single-select" name="Sexo" placeholder="[Selecione o Sexo]"
+                                    asp-for="@Model.Sexo">
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="email@email.com"
+                                   onchange="consultarDados.consultarEmail(this.value, 'cliente')"
+                                   asp-for="@Model.Email">
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="telefone">Telefone (Whatss App)</label>
+                            <input type="text" class="form-control" id="telefone" placeholder="Ex.: (00) 00000-0000"
+                                   asp-for="@Model.Telefone">
+                            <span asp-validation-for="@Model.Telefone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="outro_telefone">Outro Telefone</label>
+                            <input type="text" class="form-control" id="outro_telefone" placeholder="Outro Telefone"
+                                   asp-for="@Model.OutroTelefone">
+                            <span asp-validation-for="@Model.OutroTelefone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="cpf">CPF</label>
+                            <input type="text" class="form-control" id="cpf" placeholder="Ex.: 000.000.000-00"
+                                   onchange="if (verificarCPF(this.value, 'cliente') == false) erroCpf(this.value)"
+                                   asp-for="@Model.CPF" />
+                            <span asp-validation-for="@Model.CPF" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="dataNascimento">Data de Nascimento</label>
+                            <input type="date" class="form-control" id="dataNascimento" placeholder="Data de Nascimento"
+                                   asp-for="@Model.DataDeNascimento">
+                            <span asp-validation-for="@Model.DataDeNascimento" class="text-danger"></span>
+                        </div>
+                        <input type="hidden" id="id" name="IdUsuario" asp-for="@Model.IdUsuario">
+                        <input type="hidden" id="idInt" name="IdUsuario" asp-for="@Model.Id">
+                        <input type="hidden" id="pasta" value="usuario">
+                        <input type="hidden" id="subpasta" value="fotoUsuario">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="pt-5">Endereço</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="cep">CEP</label>
+                            <input type="text" class="form-control" id="cep" placeholder="CEP"
+                                   asp-for="@Model.CEP"
+                                   onblur="pesquisacep(this.value);">
+                            <span asp-validation-for="@Model.CEP" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="rua">Rua</label>
+                            <input type="text" class="form-control" id="rua" placeholder="Rua"
+                                   asp-for="@Model.Endereco">
+                            <span asp-validation-for="@Model.Endereco" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="numero">Numero</label>
+                            <input type="text" class="form-control" id="numero" placeholder="Numero"
+                                   asp-for="@Model.Numero">
+                            <span asp-validation-for="@Model.Numero" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="bairro">Bairro</label>
+                            <input type="text" class="form-control" id="bairro" placeholder="Bairro"
+                                   asp-for="@Model.Bairro">
+                            <span asp-validation-for="@Model.Bairro" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="complemento">Complemento</label>
+                            <input type="text" class="form-control" id="complemento" placeholder="Complemento"
+                                   asp-for="@Model.Complemento">
+                            <span asp-validation-for="@Model.Complemento" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="cidade">Cidade</label>
+                            <input type="text" class="form-control" id="cidade" placeholder="Cidade"
+                                   asp-for="@Model.Cidade">
+                            <span asp-validation-for="@Model.Cidade" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="UF">UF</label>
+                            <select class="form-control single-select" id="uf"
+                                    asp-for="@Model.UF">
+                                <option selected value="">[Selecione o estado]</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                            <span asp-validation-for="@Model.UF" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3 class="mt-5">Conclusão</h3>
+
+            <div class="card card-default mt-5">
+                <div class="row card-body">
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-success btn-block px-4">
+                            &nbsp;&nbsp; Salvar &nbsp;&nbsp;
+                        </button>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+
+                    </div>
+                    <div class="form-group col-md-3 mb-1">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"
+                                class="btn btn-danger btn-block px-4 pull-right">
+                            &nbsp; Cancelar &nbsp;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+
+<div class="modal" id="myprofilecrop" tabindex="-1" role="dialog" aria-labelledby="cropmodel">
+    <div class="modal-dialog" role="document">
+        <div id="loadingDiv" class="hide">
+            <div>
+                <h7>Please wait...</h7>
+            </div>
+        </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arial-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center" id="cropmodel">Update Profile Picture</h4>
+            </div>
+            <form id="formimg">
+                <div id="loader" class="text-center">Loading...</div>
+                <div class="modal-body text-center">
+                    <div id="views" class="m-t-15"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cropbutton" class="btn btn-primary" type="submit">Save</button>
+                    <button id="rotatebutton" class="btn btn-default" type="button">Rotate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

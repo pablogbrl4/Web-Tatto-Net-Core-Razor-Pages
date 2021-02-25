@@ -1,0 +1,96 @@
+﻿@{
+    @using System.IO;
+
+    ViewData["Title"] = "Lista Estúdios";
+    Layout = "/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+@model BuscaEstudioViewModel
+
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+<link href="~/assets/css/estados.css" rel="stylesheet">
+
+<style>
+    p {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+</style>
+
+<div class="bg-white container my-10">
+
+    <div class="estados">
+        <div class="div-tags">
+            <ul class="ul-tags">
+                <li class="li-tags-1">
+                    <h2 class="h2-tags-1 pt-2">MG</h2>
+                </li>
+                <li class="li-tags-2">
+                    >
+                </li>
+                <li class="li-tags-3">
+                    <h2 class="h2-tags-3 pt-2">
+                        <a href="/Estudio/ListarEstudios">
+                            Estúdios em Belo Horizonte e Região
+                        </a>
+                    </h2>
+                </li>
+                <li class="escolher-estado">Estúdios em Belo Horizonte e região</li>
+            </ul>
+        </div>
+        <div class="div-listaestados">
+            <div class="div-estados">
+
+                @foreach (var item in Model.Bairros)
+                {
+                    <ul class="ul-estados">
+
+                        <li class="li-estados">
+                            <a data-lurker-detail="linkshelf_item" data-lurker_state="25"
+                               asp-area="" asp-controller="Estudio" asp-action="ListarEstudios" asp-route-id="@item"
+                               class="a-estados">
+                                @item
+                            </a>
+                        </li>
+                    </ul>
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+
+    <div class="card-columns">
+        @foreach (var item in Model.Estudios)
+        {
+
+            <a asp-area="" asp-controller="Estudio" asp-action="DetalhesEstudio" asp-route-id="@item.NomeDeUsuario">
+                <div class="card">
+
+                    @if (File.Exists(@"wwwroot/images/estudio/fotoEstudio/" + @item.IdEstudio + ".jpg"))
+                    {
+                        <img class="card-img-top" src="@("~/images/estudio/fotoEstudio/" + @item.IdEstudio + ".jpg")" alt="Card image cap"
+                             asp-append-version="true">
+
+                    }
+                    else
+                    {
+                        <img class="card-img-top" src="/images/icone-perfil.jpg" alt="Card image cap">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeEstudio)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.TextoBibliografico)</p>
+                    </div>
+                </div>
+            </a>
+
+        }
+    </div>
+</div>
+
+<br />
+<br />

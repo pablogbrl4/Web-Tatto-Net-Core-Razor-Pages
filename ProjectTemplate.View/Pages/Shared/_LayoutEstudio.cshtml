@@ -1,0 +1,203 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>@ViewData["Title"] - Tattoo</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/assets/img/favicon.jpg" rel="icon">
+    <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/venobox/venobox.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+    <!-- Css Para Cortar Foto -->
+    <link href="~/css/jquery.Jcrop.min.css" rel="stylesheet" />
+</head>
+
+<body id="page-top" class="bg-white">
+
+    <!-- ======= Header/ Navbar ======= -->
+    <nav class=" navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll" href="../Index">TATTOO</a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+                    aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" asp-area="" asp-controller="Estudio" asp-action="GaleriaEstudio" asp-route-id="@Model.Estudio.NomeDeUsuario">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" href="#estudio">Estudio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" href="#tatuadores">Tatuadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" asp-area="" asp-controller="Estudio" asp-action="ShoppingEstudio" asp-route-id="@Model.Estudio.NomeDeUsuario">Shopping</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" href="#localizacao">Localização</a>
+                    </li>
+                    <!--COMPONENTE DE LOGIN-->
+                    <partial name="_LoginPartialCliente" />   <!--Tag Helper (insere aqui, conteudo passado dentro de outro arquivo html)-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ======= Main ======= -->
+    <main id="main" class="content">
+        @RenderBody()
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <section id="localizacao">
+        <footer class="footer">
+            <br>
+            <div class="container text-left">
+                <div class="row pb-3">
+
+                    <div class="col-lg-5 pt-3">
+
+                        <div class="title-box-2 pt-4 pt-md-0">
+                            <h5 class="title-left">
+                                Sobre nós
+                            </h5>
+                        </div>
+
+                        <div>
+                            <h3>@Model.Estudio.NomeEstudio</h3>
+                            <p>@Model.Estudio.TextoBibliografico</p>
+                        </div>
+                        <div class="socials">
+                            <ul>
+                                @if (Model.Estudio.Facebook != null )
+                                {
+                                <li><a href="@Model.Estudio.Facebook"><span class="ico-circle-custom"><i class="ion-social-facebook"></i></span></a></li>
+                                }
+                                
+                                <li><a href="@Model.Estudio.Instagram"><span class="ico-circle-custom"><i class="ion-social-instagram"></i></span></a></li>
+                                <li><a href="@Model.Estudio.Twitter"><span class="ico-circle-custom"><i class="ion-social-twitter"></i></span></a></li>
+                                <li><a href="@Model.Estudio.YouTube"><span class="ico-circle-custom"><i class="ion-social-youtube"></i></span></a></li>
+                                <li><a href="@Model.Estudio.LinkedIn"><span class="ico-circle-custom"><i class="ion-social-linkedin"></i></span></a></li>
+                                <li><a href="@Model.Estudio.WhatsApp"><span class="ico-circle-custom"><i class="ion-social-whatsapp"></i></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 pt-3">
+                        <div class="title-box-2 pt-4 pt-md-0">
+                            <h5 class="title-left">
+                                Contato
+                            </h5>
+                        </div>
+                        <span>Telefone</span>
+                        <p>@Model.Estudio.Telefone</p>
+                        <p>@Model.Estudio.OutroTelefone</p>
+                        <p>@Model.Estudio.Email</p>
+                        <p>
+                            @Model.Estudio.Endereco, N: @Model.Estudio.Numero, Bairro: @Model.Estudio.Bairro, Complemento: @Model.Estudio.Complemento,
+                            @Model.Estudio.Cidade - @Model.Estudio.UF, Cep: @Model.Estudio.CEP
+                        </p>
+                    </div>
+
+
+                    <div class="col-lg-3 pt-3">
+                        <div class="title-box-2 pt-4 pt-md-0">
+                            <h5 class="title-left">
+                                Atendimento
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+
+                                @foreach (var horario in Model.Estudio.HorarioDeFuncionamentoEstudio)
+                                {
+                                    <p>@horario.DiaSemana </p>
+                                }
+
+                            </div>
+                            <div class="col-8">
+
+                                @foreach (var horario in Model.Estudio.HorarioDeFuncionamentoEstudio)
+                                {
+                                    <p>@horario.Abertura - @horario.Fechamento </p>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-option">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7 text-left">
+                            <ul style="padding: 0; margin: 0;">
+                                <li><a href="#">Contato</a></li>
+                                <li><a href="#">Termos de uso</a></li>
+                                <li><a href="#">Privacidade</a></li>
+                                <li><a href="#">Politica ambiental</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="text-left letra-pequena">
+                                <p>
+                                    @Model.Estudio.NomeEstudio ©
+                                    Todos os direitos reservados
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- End  Footer -->
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/assets/vendor/counterup/jquery.counterup.min.js"></script>
+    <script src="~/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/assets/vendor/typed.js/typed.min.js"></script>
+    <script src="~/assets/vendor/venobox/venobox.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/assets/js/navbar.js"></script>
+
+
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

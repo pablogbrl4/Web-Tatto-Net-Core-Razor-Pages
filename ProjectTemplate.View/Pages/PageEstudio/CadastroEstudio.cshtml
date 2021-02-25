@@ -1,0 +1,360 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageEstudio.CadastroEstudioModel
+
+@section Scripts
+{
+    <script src="~/js/cep.js"></script>
+    <script src="~/js/tatto.js"></script>
+
+    <script src="~/js/jcrop/jquery.Jcrop.min.js"></script>
+    <script src="~/js/ImageCrop.js"></script>
+
+    <script src="~/js/jquery.maskedinput.js"></script>
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Cadastro Estúdio";
+    Layout = "/Pages/Shared/_LayoutAdminEstudio.cshtml";
+
+}
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+<div class="bg-white my-10">
+
+    <div id="cadastroestudio" class="container">
+
+        <form method="post">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <h3 class="pt-5">Foto Perfil Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                @*<img src="@("~/images/estudio/fotoEstudio/"+ Estudio.IdEstudio +".jpg")" class="img img-responsive img-rounded img-fluid"
+                                    asp-append-version="true">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="img input-custom-img" id="imgInp" name="files" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Dados Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="NomeEstudio">Nome Do Estudio</label>
+                            <input type="text" class="form-control" id="NomeEstudio" placeholder="Nome do Estudio"
+                                   asp-for="Estudio.NomeEstudio">
+                            <span asp-validation-for="Estudio.NomeEstudio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="DatadeFundação">Data de Fundação</label>
+                            <input type="date" class="form-control" id="DatadeFundação" placeholder="Data de Fundação"
+                                   asp-for="Estudio.DatadeFundacao">
+                            <span asp-validation-for="Estudio.DatadeFundacao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="NomeDeUsuario">Nome De Usuário</label>
+                            <input type="text" class="form-control" id="NomeDeUsuario" placeholder="Nome De Usuário"
+                                   asp-for="Estudio.NomeDeUsuario">
+                            <span asp-validation-for="Estudio.NomeDeUsuario" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="email@email.com"
+                                   onchange="consultarDados.consultarEmail(this.value, 'estudio')"
+                                   asp-for="Estudio.Email">
+                            <span asp-validation-for="Estudio.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cnpj">CNPJ</label>
+                            <input type="text" class="form-control" id="cnpj" placeholder="Ex.: XX.XXX.XXX/XXXX-XX"
+                                   onchange="if (validarCNPJ(this.value) == false) erroCnpj(this.value)"
+                                   asp-for="Estudio.CNPJ">
+                            <span asp-validation-for="Estudio.CNPJ" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="telefone">Telefone (Whatss App)</label>
+                            <input type="text" class="form-control" id="telefone" placeholder="Ex.: (00) 00000-0000"
+                                   asp-for="Estudio.Telefone">
+                            <span asp-validation-for="Estudio.Telefone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="outro_telefone">Outro Telefone</label>
+                            <input type="text" class="form-control" id="outro_telefone" placeholder="Outro Telefone"
+                                   asp-for="Estudio.OutroTelefone">
+                            <span asp-validation-for="Estudio.OutroTelefone" class="text-danger"></span>
+                        </div>
+                        <input type="hidden" id="id" 
+                               asp-for="@Model.Estudio.Id">
+                        <input type="hidden" id="id-estudio" 
+                               asp-for="@Model.Estudio.IdEstudio">
+                        <input type="hidden" id="pasta" value="estudio">
+                        <input type="hidden" id="subpasta" value="fotoEstudio">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Endereço do Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="cep">CEP</label>
+                            <input type="text" class="form-control" id="cep" placeholder="CEP"
+                                   asp-for="Estudio.CEP"
+                                   onblur="pesquisacep(this.value);">
+                            <span asp-validation-for="Estudio.CEP" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="rua">Rua</label>
+                            <input type="text" class="form-control" id="rua" placeholder="Rua"
+                                   asp-for="Estudio.Endereco">
+                            <span asp-validation-for="Estudio.Endereco" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="numero">Numero</label>
+                            <input type="text" class="form-control" id="numero" placeholder="Numero"
+                                   asp-for="Estudio.Numero">
+                            <span asp-validation-for="Estudio.Numero" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="bairro">Bairro</label>
+                            <input type="text" class="form-control" id="bairro" placeholder="Bairro"
+                                   asp-for="Estudio.Bairro">
+                            <span asp-validation-for="Estudio.Bairro" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="complemento">Complemento</label>
+                            <input type="text" class="form-control" id="complemento" placeholder="Complemento"
+                                   asp-for="Estudio.Complemento">
+                            <span asp-validation-for="Estudio.Complemento" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="cidade">Cidade</label>
+                            <input type="text" class="form-control" id="cidade" placeholder="Cidade"
+                                   asp-for="Estudio.Cidade">
+                            <span asp-validation-for="Estudio.Cidade" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="UF">UF</label>
+                            <select class="form-control single-select" id="uf">
+                                asp-for="Estudio.UF">
+                                <option selected value="">[Selecione o estado]</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                            <span asp-validation-for="Estudio.UF"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3 class="mt-5">Redes Sociais do Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="Instagram">Instagram</label>
+                            <input type="text" class="form-control" id="Instagram" placeholder="Instagram"
+                                   asp-for="Estudio.Instagram">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Facebook">Facebook</label>
+                            <input type="text" class="form-control" id="Facebook" placeholder="Facebook"
+                                   asp-for="Estudio.Facebook">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="YouTube">YouTube</label>
+                            <input type="text" class="form-control" id="YouTube" placeholder="YouTube"
+                                   asp-for="Estudio.YouTube">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Twitter">Twitter</label>
+                            <input type="text" class="form-control" id="Twitter" placeholder="Twitter"
+                                   asp-for="Estudio.Twitter">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="LinkedIn">LinkedIn</label>
+                            <input type="text" class="form-control" id="LinkedIn" placeholder="LinkedIn"
+                                   asp-for="Estudio.LinkedIn">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="WhatsApp">WhatsApp</label>
+                            <input type="text" class="form-control" id="WhatsApp" placeholder="WhatsApp"
+                                   asp-for="Estudio.WhatsApp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Horários de Funcionamento do Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+
+                    @for (int i = 0; i < @Model.Estudio.HorarioDeFuncionamentoEstudio.Count; i++)
+                    {
+                        <input type="hidden" id="DiaSemana"
+                               asp-for="@Model.Estudio.HorarioDeFuncionamentoEstudio[i].DiaSemana">
+
+                        <input type="hidden" id="IdEstudio"
+                               asp-for="@Model.Estudio.HorarioDeFuncionamentoEstudio[i].IdEstudio">
+
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="control-label" for="labelsemana"> @Model.Estudio.HorarioDeFuncionamentoEstudio[i].DiaSemana </label>
+
+                                <label class="control-label" for="labelsemana"> (Abertura)</label>
+                                <input type="time" class="form-control" id="Abertura" placeholder="Abertura"
+                                       asp-for="@Model.Estudio.HorarioDeFuncionamentoEstudio[i].Abertura">
+
+                                <label class="control-label mt-2" for="Fechamento">(Fechamento)</label>
+                                <input type="time" class="form-control" id="Fechamento" placeholder="Fechamento"
+                                       asp-for="@Model.Estudio.HorarioDeFuncionamentoEstudio[i].Fechamento">
+                                <hr />
+                            </div>
+                        </div>}
+
+                </div>
+            </div>
+
+            <h3 class="mt-5">Textos do Estúdio</h3>
+
+            <div class="card card-default">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="control-label" for="TextoBibliografico">Texto Bibliografico</label>
+                        <textarea rows="4" cols="60" maxlength="400" type="text" class="form-control"
+                                  id="TextoBibliografico" placeholder="Texto bibliografico"
+                                  asp-for="Estudio.TextoBibliografico"> 
+                                </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="FrasePrincipal">Frase Principal</label>
+                        <textarea rows="2" cols="60" maxlength="80" type="text" class="form-control"
+                                  id="FrasePrincipal" placeholder="Frase Principal"
+                                  asp-for="Estudio.FraseImpactante"> 
+                                </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Conclusão</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-success btn-block px-4">&nbsp;&nbsp; Salvar &nbsp;&nbsp;</button>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+
+                    </div>
+                    <div class="form-group col-md-3 mb-1">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"
+                           class="btn btn-danger btn-block px-4 pull-right"> &nbsp; Cancelar &nbsp;</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="modal" id="myprofilecrop" tabindex="-1" role="dialog" aria-labelledby="cropmodel">
+    <div class="modal-dialog" role="document">
+        <div id="loadingDiv" class="hide">
+            <div>
+                <h7>Por favor espere...</h7>
+            </div>
+        </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arial-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center" id="cropmodel">Atualize a foto do Perfil</h4>
+            </div>
+            <form id="formimg">
+                <div id="loader" class="text-center">Carregando...</div>
+                <div class="modal-body text-center">
+                    <div id="views" class="m-t-15"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cropbutton" class="btn btn-primary" type="submit">Salvar</button>
+                    <button id="rotatebutton" class="btn btn-default" type="button">Rodar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

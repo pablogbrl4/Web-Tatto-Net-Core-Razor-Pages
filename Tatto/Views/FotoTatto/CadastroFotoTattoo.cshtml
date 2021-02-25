@@ -1,0 +1,277 @@
+﻿@section Scripts
+{
+    <script src="~/js/cep.js"></script>
+    <script src="~/js/tatto.js"></script>
+
+    <script src="~/js/jcrop/jquery.Jcrop.min.js"></script>
+    <script src="~/js/ImageCrop.js"></script>
+
+    <script src="~/js/jquery.maskedinput.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    body {
+        margin: 0px;
+        height: 100vh;
+        background: #333;
+    }
+
+    .center {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-input {
+        width: 250px;
+        padding: 20px;
+        background: #fff;
+        border: 2px dashed #555;
+    }
+
+        .form-input input {
+            display: none;
+        }
+
+        .form-input label {
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            font-size: 15px;
+            font-family: "Open Sans",sans-serif;
+            text-transform: Uppercase;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .form-input img {
+            width: 100% !important;
+            margin-top: 10px;
+        }
+</style>
+
+@{ ViewData["Title"] = "Cadastro Estúdio";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";}
+@model Tatto.Models.FotoTatto
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+
+<div class="bg-white my-10">
+
+    <div id="CadastroFotoTattoo" class="container">
+
+        <form asp-action="InserirDadosFotoTattoo" enctype="multipart/form-data">
+
+            <h3 class="pt-5">Adicionar Foto Tatuagem</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="center">
+                                <div class="form-input">
+                                    <label for="file-ip-1"
+                                           asp-for="ImageFile">Upload Image</label>
+                                    <input type="file" id="file-ip-1" accept="image/*"
+                                           onchange="showPreview(event);"
+                                           asp-for="ImageFile" >
+                                    <div class="preview">
+                                        <img id="file-ip-1-preview" src="@("~/images/estudio/FotosTatuagens/"+ Model.IdEstudio + "/" + Model.ImageName + ".jpg")" 
+                                             asp-append-version="true" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label class="control-label" for="ImageName">Nome Da Foto</label>
+
+                                <input type="text" class="form-control" id="ImageName" placeholder="Nome Da Foto"
+                                       onchange="consultarDados.consultarNomeFoto(this.value, 'fototatto')"
+                                       asp-for="@Model.ImageName">
+
+                            <span asp-validation-for="@Model.ImageName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="EstiloTatto">Estilo</label>
+                            <select class="form-control single-select" name="EstiloTatto" placeholder="[Selecione o Estilo]"
+                                    asp-for="@Model.EstiloTatto">
+                                <option selected value="">[Selecione o Estilo]</option>
+                                <option value="3D">3D</option>
+                                <option value="Aguarela">Aguarela</option>
+                                <option value="Blackwork">Blackwork</option>
+                                <option value="Bold line">Bold line</option>
+                                <option value="Chicano">Chicano</option>
+                                <option value="Comics">Comics</option>
+                                <option value="Dotwork">Dotwork</option>
+                                <option value="Floral">Floral</option>
+                                <option value="Ilustrativo">Ilustrativo</option>
+                                <option value="Maori">Maori</option>
+                                <option value="Minimalista">Minimalista</option>
+                                <option value="New School">New School</option>
+                                <option value="Old School">Old School</option>
+                                <option value="Oriental">Oriental</option>
+                                <option value="Ornamental">Ornamental</option>
+                                <option value="Realismo">Realismo</option>
+                                <option value="Single Line">Single Line</option>
+                                <option value="Surrealismo">Surrealismo</option>
+                                <option value="Tribal">Tribal</option>
+                                <option value="Outros Estilos">Outros Estilos</option>
+                                <option value="surrealism">Surrealism</option>
+                            </select>
+                            <span asp-validation-for="@Model.EstiloTatto" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="ParteDoCorpo">Parte do Corpo</label>
+                            <select class="form-control single-select" name="ParteDoCorpo" placeholder="[Selecione a Parte do Corpo]"
+                                    asp-for="@Model.ParteDoCorpo">
+                                <option selected value="">[Selecione a Parte do Corpo]</option>
+                                <option value="Abdômen">Abdômen</option>
+                                <option value="AnteBraço">AnteBraço</option>
+                                <option value="Axila">Axila</option>
+                                <option value="Braço">Braço</option>
+                                <option value="Cabeça">Cabeça</option>
+                                <option value="Canela">Canela</option>
+                                <option value="Costas">Costas</option>
+                                <option value="Coxa">Coxa</option>
+                                <option value="Dedos">Dedos</option>
+                                <option value="Mão">Mão</option>
+                                <option value="Nuca">Nuca</option>
+                                <option value="Panturrilha">Panturrilha</option>
+                                <option value="Pé">Pé</option>
+                                <option value="Peito">Peito</option>
+                                <option value="Pescoço">Pescoço</option>
+                                <option value="Punho">Punho</option>
+                                <option value="Rosto">Rosto</option>
+                                <option value="Testa">Testa</option>
+                                <option value="Outras Partes">Outras Partes</option>
+                            </select>
+                            <span asp-validation-for="@Model.ParteDoCorpo" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="Genero">Gênero</label>
+                            <select class="form-control single-select" name="Genero" placeholder="[Selecione o Gênero]"
+                                    asp-for="@Model.Genero">
+                                <option selected value="">[Selecione o Gênero]</option>
+                                <option value="Un">Unissex</option>
+                                <option value="Ma">Masculino</option>
+                                <option value="Fe">Feminino</option>
+
+                            </select>
+                            <span asp-validation-for="@Model.Genero" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="Cor">Cor</label>
+                            <select class="form-control single-select" name="Cor" placeholder="[Selecione a Cor]"
+                                    asp-for="@Model.Cor">
+                                <option selected value="">[Selecione a Cor]</option>
+                                <option value="Preta">Preta</option>
+                                <option value="Colorida">Colorida</option>
+
+                            </select>
+                            <span asp-validation-for="@Model.Cor" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="IdUsuario">Selecione o Cliente</label>
+                            <select class="form-control single-select" name="IdUsuario" placeholder="[Selecione o Cliente]"
+                                    asp-for="@Model.IdUsuario">
+
+                                <option selected value=0>[Selecione o Cliente]</option>
+                                <option value=0>Não Informado</option>
+                                @foreach (var item in Model.Usuario)
+                                {
+                                    if (item != null)
+                                    {
+                                    <option value="@item.Id">@(item.PrimeiroNome) @(item.SobrenomeCompleto)</option>
+                                    }
+                                }
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="IdTatuador">Selecione o Tatuador(a)</label>
+                            <select class="form-control single-select" name="IdTatuador" placeholder="[Selecione o Tatuador(a)]"
+                                    asp-for="@Model.IdTatuador">
+
+                                <option selected value="">[Selecione o Tatuador]</option>
+                                <option value="">Não Informado</option>
+                                @foreach (var item in Model.Tatuador)
+                                {
+                                    if (item != null)
+                                    {
+                                        <option value="@item.IdTatuador">@(item.PrimeiroNome) @(item.SobrenomeCompleto)</option>
+                                    }
+
+                                }
+
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <input type="hidden" id="id" name="Id" asp-for="@Model.Id">
+                    <input type="hidden" id="IdEstudio" name="IdEstudio" asp-for="@Model.IdEstudio">
+
+                </div>
+            </div>
+
+
+            <h3 class="mt-5">Conclusão</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-success btn-block px-4">&nbsp;&nbsp; Salvar &nbsp;&nbsp;</button>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+
+                    </div>
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-danger btn-block px-4 pull-right"> &nbsp; Cancelar &nbsp;</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function showPreview(event) {
+        if (event.target.files.length > 0) {
+            var src = URL.createObjectURL(event.target.files[0]);
+            var preview = document.getElementById("file-ip-1-preview");
+            preview.src = src;
+            preview.style.display = "block";
+        }
+    }
+</script>
+
+<br />
+<br />

@@ -1,0 +1,72 @@
+﻿
+@{ ViewData["Title"] = "Listar Estúdios"; }
+@model BuscaEstudioViewModel
+
+
+<div class="bg-white my-10">
+    <div class="card container">
+
+        <div class="mx-3 mt-3">
+            <h1>Estúdios</h1>
+
+            <p>
+                <a asp-action="Create">Criar novo</a>
+            </p>
+        </div>
+
+        <div class="card-body">
+            <div class="form-inline mb-3">
+                <form asp-action="BuscaEstudios">
+                    <div class="input-group mb-3">
+                        <input type="text" asp-for="@Model.Pesquisa" name="pesquisa" class="form-control" placeholder="Pesquisa por Nome" aria-label="Pesquisa por Nome" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ion-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estudio.NomeEstudio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estudio.DatadeFundação)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estudio.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estudio.Telefone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estudio.OutroTelefone)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Estudios)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.NomeEstudio)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DatadeFundação)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OutroTelefone)</td>
+                            <td>
+                                <a asp-action="CadastroEstudio" asp-route-id="@item.IdEstudio">Edit</a> |
+                                <a asp-controller="Agenda" asp-action="CadastroAgenda" asp-route-id="@item.IdEstudio">Details</a> |
+                                <a asp-controller="Agenda" asp-action="CadastroAgenda" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

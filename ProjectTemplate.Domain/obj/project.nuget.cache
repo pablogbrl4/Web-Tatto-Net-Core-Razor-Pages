@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "foIAHPKhMrUeDRAC2ZpbAZhfUnXiVK7Jd87evbnvPiVsVtrnJU212XWTvY70BEuUJpMC5A4flXbytYlv7I7d2A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Eddy Moura\\Documents\\0 - Softwares proprios\\Tatto 28_09_20\\ProjectTemplate.Domain\\ProjectTemplate.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Eddy Moura\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.1\\microsoft.aspnetcore.http.features.5.0.1.nupkg.sha512",
+    "C:\\Users\\Eddy Moura\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\Eddy Moura\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

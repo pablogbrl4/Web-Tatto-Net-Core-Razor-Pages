@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewData["Title"] = "Listar Contatos";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";
+
+}
+@model BuscaUsuariosViewModel
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+
+<style>
+    .card {
+        flex-direction: row;
+    }
+</style>
+
+
+<div class="container bg-white my-10">
+
+    <div class="card card-default p-0 m-0 row mb-3 card-custom-busca-contatos">
+
+        <div class="card-body p-0 m-0 col-lg-4 adicionar-web-custom">
+            <a asp-action="CadastroUsuarioByEstudio" class="btn btn-outline-primary btn-lg popover-dismiss"> Adicionar novo contato <i class="ion-android-add btn-primary-add p-2"></i> </a>
+        </div>
+
+        <div class="p-0 m-0 col-lg-8 mt-1">
+            <form asp-action="CadastrarContatobyCpf">
+                <div class="input-group ">
+                    <input type="text" asp-for="@Model.Usuario.CPF" name="ContatobyCpf" class="form-control"
+                           placeholder="Adicionar usuário já existente por CPF" aria-label="Adicionar usuário já existente por CPF" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="submit">
+                            <i class="ion-android-add"></i>
+                        </button>
+                    </div>
+
+                    <a tabindex="0" class="btn btn-dark rounded-circle ml-1" role="button" data-toggle="popover" data-trigger="focus"
+                       title="Adicionar usuário já existente"
+                       data-content="Adiciona usuário que já tem seu cadastro no site pelo seu CPF. " style="color: white; margin: 5px 5px !important; padding: 1px 9px !important;">
+                        ?
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="card card-default">
+        <div class="card-body card-body-custom">
+
+                <div class="mb-3">
+                    <form asp-action="BuscaContatos">
+                        <div class="input-group mb-3">
+                            <input type="text" asp-for="@Model.Pesquisa" name="pesquisa" class="form-control"
+                                   placeholder="Pesquisa por Nome" aria-label="Pesquisa por Nome" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="ion-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Usuario.PrimeiroNome)*@
+                                Nome
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Usuario.SobrenomeCompleto)*@
+                                Sobrenome
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Usuario.Endereco)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Usuario.Telefone)
+                            </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Usuario.OutroTelefone)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Usuarios)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.PrimeiroNome)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SobrenomeCompleto)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Endereco)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OutroTelefone)</td>
+                                <td>
+                                    <a asp-action="RemoverContato" asp-route-id="@item.Id" class="btn btn-danger">Remover</a>
+                                    <a asp-controller="Estudio" asp-action="DetalhesUsuario" asp-route-id="@item.Id" class="btn btn-secondary">Detalhes</a>
+                                    @if (item.IdUsuario == null)
+                                    {
+                                        <a asp-action="CadastroUsuarioByEstudio" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+                <div class="my-3 p-3 bg-white rounded box-shadow media-custom">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Usuários</h6>
+                    @foreach (var item in Model.Usuarios)
+                    {
+                        <div class="media text-muted pt-3 border-bottom border-gray row pb-1">
+
+                            <div class="media-body pb-1 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Nome: </strong>@Html.DisplayFor(modelItem => item.PrimeiroNome)
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">Sobrenome: </strong>@Html.DisplayFor(modelItem => item.SobrenomeCompleto)
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">@Html.DisplayNameFor(model => model.Usuario.Endereco): </strong>@Html.DisplayFor(modelItem => item.Endereco)
+                                </span>
+                                <span class="d-block">
+                                    <strong class="text-gray-dark">@Html.DisplayNameFor(model => model.Usuario.Telefone):</strong> @Html.DisplayFor(modelItem => item.Telefone)
+                                </span>
+                            </div>
+
+                            <div class="col-lg-3 pb-1">
+                                <span class="d-flex justify-content-custom mt-2">
+                                    <a class="btn btn-danger mr-1" asp-action="RemoverContato" asp-route-id="@item.Id">Remover</a>
+                                    <a class="btn btn-secondary mr-1" asp-controller="Estudio" asp-action="DetalhesUsuario" asp-route-id="@item.Id">Detalhes</a>
+                                    @if (item.IdUsuario == null)
+                                    {
+                                        <a class="btn btn-primary" asp-action="CadastroUsuarioByEstudio" asp-route-id="@item.Id">Editar</a>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="btn-add">
+    <a asp-action="CadastroUsuarioByEstudio"> <i class="ion-android-add btn-primary-add btn-new-custom"></i> </a>
+</div>
+
+<br />
+<br />

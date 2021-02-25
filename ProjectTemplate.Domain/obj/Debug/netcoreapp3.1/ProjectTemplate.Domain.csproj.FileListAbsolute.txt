@@ -1,0 +1,18 @@
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.deps.json
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.deps.json
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\bin\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.csprojAssemblyReference.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.AssemblyInfoInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.AssemblyInfo.cs
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.dll
+C:\Users\Eddy Moura\Documents\0 - Softwares proprios\Tatto 28_09_20\ProjectTemplate.Domain\obj\Debug\netcoreapp3.1\ProjectTemplate.Domain.pdb

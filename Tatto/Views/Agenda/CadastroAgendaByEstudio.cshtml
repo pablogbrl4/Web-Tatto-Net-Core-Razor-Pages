@@ -1,0 +1,289 @@
+﻿@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Cadastro Agenda";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";
+}
+@model Agenda
+
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+
+
+<div class="bg-white my-10">
+
+    <div id="cadastrousuario" class="container">
+
+        <form asp-action="InserirDadosAgendaByEstudio" method="post">
+
+            <h3 class="mt-5">Sessão De Tatuagem</h3>
+
+            <div class="card card-default">
+                <div class="row card-body pb-0">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="DaraHoraMarcação">Marque o Horário da Sessão</label>
+                            <input type="datetime-local" class="form-control" id="DaraHoraMarcação" placeholder="Data e Hora da Marcação"
+                                   value="@DateTime.Today.Year-@DateTime.Today.Month-'@DateTime.Today.Day @DateTime.Today.Hour"
+                                   asp-for="@Model.DataMarcação">
+                            <span asp-validation-for="@Model.DataMarcação" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="IdUsuario">Selecione o Cliente</label>
+                            <select class="form-control single-select" name="IdUsuario" placeholder="[Selecione o Cliente]"
+                                    asp-for="@Model.IdUsuario">
+                                @foreach (var item in Model.Usuarios)
+                                {
+                                    <option value="@item.Id">@(item.PrimeiroNome +" "+ item.SobrenomeCompleto)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row card-body pt-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="estudio">Estúdio</label>
+                            <input type="text" class="form-control" id="estudio" placeholder="Estúdio" disabled
+                                   asp-for="@Model.Estudio.NomeEstudio">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="IdTatuador">Selecione o Tatuador(a)</label>
+                            <select class="form-control single-select" name="IdTatuador" placeholder="[Selecione o Tatuador(a) Disponível]"
+                                    asp-for="@Model.IdTatuador">
+                                @foreach (var item in Model.Tatuador)
+                                {
+                                    if (item != null)
+                                    {
+                                        <option value="@item.IdTatuador">@(item.PrimeiroNome)</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" id="IdUsuario" name="Id" asp-for="@Model.Id">
+                <input type="hidden" id="IdUsuario" name="IdUsuario" asp-for="@Model.IdUsuario">
+                <input type="hidden" id="IdEstudio" name="IdEstudio" asp-for="@Model.IdEstudio">
+                <input type="hidden" id="IdTatuador" name="IdTatuador" asp-for="@Model.IdTatuador">
+
+                <input type="hidden" id="pasta" value="usuario">
+                <input type="hidden" id="subpasta" value="fotoTatuagem">
+                <input type="hidden" id="outrapasta" value="@Model.IdUsuario">
+
+
+            </div>
+
+            <h3 class="pt-5">Infromações de Saúde</h3>
+
+            <div class="card card-default">
+                <div class="row card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="alergia">Possuí alguma alergia?</label><br />
+
+                            <input type="radio" class="form-group" id="alergia" value=false onclick="ativarImput(true,'textoalergia')" CHECKED
+                                   asp-for="@Model.Alergia">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="alergia" value=true onclick="ativarImput(false,'textoalergia')"
+                                   asp-for="@Model.Alergia">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textoalergia" placeholder="Qual Alergia?" required disabled
+                                   asp-for="@Model.TextoAlergia">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hepatite">Portador(a) de Hepatite?</label><br />
+
+                            <input type="radio" class="form-group" id="hepatite" value=false onclick="ativarImput(true,'textohepatite')" CHECKED
+                                   asp-for="@Model.Hepatite">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="hepatite" value=true onclick="ativarImput(false,'textohepatite')"
+                                   asp-for="@Model.Hepatite">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textohepatite" placeholder="Qual Hepatite?" required disabled
+                                   asp-for="@Model.TextoHepatite">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="dst">Possuí Alguma DST?</label><br />
+
+                            <input type="radio" class="form-group" id="dst" value=false onclick="ativarImput(true,'textodst')" CHECKED
+                                   asp-for="@Model.DST">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="dst" value=true onclick="ativarImput(false,'textodst')"
+                                   asp-for="@Model.DST">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textodst" placeholder="Qual DST?" required disabled
+                                   asp-for="@Model.TextoDST">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="medicamento">Utiliza Algum Medicamento?</label><br />
+
+                            <input type="radio" class="form-group" id="medicamento" value=false onclick="ativarImput(true,'textomedicamento')" CHECKED
+                                   asp-for="@Model.UtilizaMedicamento">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="medicamento" value=true onclick="ativarImput(false,'textomedicamento')"
+                                   asp-for="@Model.UtilizaMedicamento">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textomedicamento" placeholder="Qual(is) Medicamento(s)?" required disabled
+                                   asp-for="@Model.TextoUtilizaMedicamento">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="pele">Possuí algum problema Dermatológico?</label><br />
+
+                            <input type="radio" class="form-group" id="pele" value=false onclick="ativarImput(true,'textopele')" CHECKED
+                                   asp-for="@Model.problemaDermatológico">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="pele" value=true onclick="ativarImput(false,'textopele')"
+                                   asp-for="@Model.problemaDermatológico">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textopele" placeholder="Qual(is) problema(s)?" required disabled
+                                   asp-for="@Model.TextoproblemaDermatológico">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="epilepsia">Possuí Epilepsia?</label><br />
+
+                            <input type="radio" class="form-group" id="epilepsia" value=false onclick="ativarImput(true,'textoepilepsia')" CHECKED
+                                   asp-for="@Model.Epilepsia">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="epilepsia" value=true onclick="ativarImput(false,'textoepilepsia')"
+                                   asp-for="@Model.Epilepsia">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textoepilepsia" placeholder="Qual(is) tipo(s) de Crise(s)?" required disabled
+                                   asp-for="@Model.TextoEpilepsia">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cardiaco">Possuí Problemas Cardíacos/Circulatórios?</label><br />
+
+                            <input type="radio" class="form-group" id="cardiaco" value=false onclick="ativarImput(true,'textocardiaco')" CHECKED
+                                   asp-for="@Model.ProblemaCardiaco">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="cardiaco" value=true onclick="ativarImput(false,'textocardiaco')"
+                                   asp-for="@Model.ProblemaCardiaco">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textocardiaco" placeholder="Qual(is) Problema(s)?" required disabled
+                                   asp-for="@Model.TextoProblemaCardiaco">
+                        </div>
+                        <div class="form-group">
+
+                            <label class="control-label" for="drogas">Fez ou Faz uso de drogas?</label><br />
+
+                            <input type="radio" class="form-group" id="drogas" value=false onclick="ativarImput(true,'textodrogas')" CHECKED
+                                   asp-for="@Model.UsaDrogas">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="drogas" value=true onclick="ativarImput(false,'textodrogas')"
+                                   asp-for="@Model.UsaDrogas">&nbsp;Sim<br />
+
+                            <input type="text" class="form-control" id="textodrogas" placeholder="Qual(is) Droga(s)?" required disabled
+                                   asp-for="@Model.TextoUsaDrogas">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="tipoSanguineo">Tipo Sanguíneo</label>
+                            <select class="form-control single-select" id="tipoSanguineo"
+                                    asp-for="@Model.TipoSanguineo">
+                                <option selected value="">[Selecione Seu Tipo Sanguíneo]</option>
+                                <option value="A-">A-</option>
+                                <option value="A+">A+</option>
+                                <option value="B-">B-</option>
+                                <option value="B+">B+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="O-">O-</option>
+                                <option value="O+">O+</option>
+                                <option value="naoSei">Não Sei</option>
+                            </select>
+                            <span asp-validation-for="@Model.TipoSanguineo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="alimentou">Se alimentou e se Hidratou bem?</label><br />
+
+                            <input type="radio" class="form-group" id="alimentou" value=False CHECKED
+                                   asp-for="@Model.AlimentouBem">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="alimentou" value=True
+                                   asp-for="@Model.AlimentouBem">&nbsp;Sim<br />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="gravida">Está Gravida?</label><br />
+
+                            <input type="radio" class="form-group" id="gravida" value=False CHECKED
+                                   asp-for="@Model.Gravida">&nbsp;Não &nbsp;
+
+                            <input type="radio" class="form-group" id="gravida" value=True
+                                   asp-for="@Model.Gravida">&nbsp;Sim<br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Conclusão</h3>
+
+            <div class="card card-default mt-5">
+                <div class="row card-body">
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-success btn-block px-4">&nbsp;&nbsp; Salvar &nbsp;&nbsp;</button>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+
+                    </div>
+                    <div class="form-group col-md-3 mb-1">
+                        <button type="submit" class="btn btn-danger btn-block px-4 pull-right"> &nbsp; Cancelar &nbsp;</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="myprofilecrop" tabindex="-1" role="dialog" aria-labelledby="cropmodel">
+    <div class="modal-dialog" role="document">
+        <div id="loadingDiv" class="hide">
+            <div>
+                <h7>Please wait...</h7>
+            </div>
+        </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arial-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center" id="cropmodel">Update Profile Picture</h4>
+            </div>
+            <form id="formimg">
+                <div id="loader" class="text-center">Loading...</div>
+                <div class="modal-body text-center">
+                    <div id="views" class="m-t-15"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cropbutton" class="btn btn-primary" type="submit">Save</button>
+                    <button id="rotatebutton" class="btn btn-default" type="button">Rotate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

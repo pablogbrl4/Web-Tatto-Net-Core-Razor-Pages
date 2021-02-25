@@ -1,0 +1,261 @@
+﻿@{
+    @using System.IO;
+
+    ViewData["Title"] = "Home Page";
+    Layout = "/Views/Shared/_LayoutUsuario.cshtml";
+}
+@model BuscaTatuagensViewModel
+
+<link href="~/assets/css/tatuagens.css" rel="stylesheet">
+<link href="~/assets/css/selecionar.css" rel="stylesheet">
+<link href="~/assets/css/modal.css" rel="stylesheet">
+
+
+<div class="my-10">
+    <div class="bg-white container">
+
+
+        <form asp-action="ListarTatuagens">
+
+            <div class="row">
+                <div id="selecionar" class="col-lg-6">
+                    <label class="label-custom">
+                        <div class="div-span">
+                            <span class="span-custom">Estilo</span>
+                            <select class="selecionar-custom" asp-for="@Model.Tatuagem.EstiloTatto" name="estilo">
+                                <option value=" ">Todos</option>
+                                <option value="3D">3D</option>
+                                <option value="Aguarela">Aguarela</option>
+                                <option value="Blackwork">Blackwork</option>
+                                <option value="Bold line">Bold line</option>
+                                <option value="Chicano">Chicano</option>
+                                <option value="Comics">Comics</option>
+                                <option value="Dotwork">Dotwork</option>
+                                <option value="Floral">Floral</option>
+                                <option value="Ilustrativo">Ilustrativo</option>
+                                <option value="Maori">Maori</option>
+                                <option value="Minimalista">Minimalista</option>
+                                <option value="New School">New School</option>
+                                <option value="Old School">Old School</option>
+                                <option value="Oriental">Oriental</option>
+                                <option value="Ornamental">Ornamental</option>
+                                <option value="Realismo">Realismo</option>
+                                <option value="Single Line">Single Line</option>
+                                <option value="Surrealismo">Surrealismo</option>
+                                <option value="Tribal">Tribal</option>
+                                <option value="Outros Estilos">Outros Estilos</option>
+                            </select>
+
+                            <div class="_1qCONy-"></div>
+                            <div class="div-svg">
+                                <svg class="svg-custom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                        <path fill-rule="evenodd"
+                                              d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                        </path>
+                                    </svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="col-lg-6">
+                    <label class="label-custom">
+                        <div class="div-span">
+                            <span class="span-custom">Partes Do Corpo</span>
+                            <select class="selecionar-custom" asp-for="@Model.Tatuagem.ParteDoCorpo" name="parteCorpo">
+                                <option value=" ">Todas</option>
+                                <option value="Abdômen">Abdômen</option>
+                                <option value="AnteBraço">AnteBraço</option>
+                                <option value="Axila">Axila</option>
+                                <option value="Braço">Braço</option>
+                                <option value="Cabeça">Cabeça</option>
+                                <option value="Canela">Canela</option>
+                                <option value="Costas">Costas</option>
+                                <option value="Coxa">Coxa</option>
+                                <option value="Dedos">Dedos</option>
+                                <option value="Mão">Mão</option>
+                                <option value="Nuca">Nuca</option>
+                                <option value="Panturrilha">Panturrilha</option>
+                                <option value="Pé">Pé</option>
+                                <option value="Peito">Peito</option>
+                                <option value="Pescoço">Pescoço</option>
+                                <option value="Punho">Punho</option>
+                                <option value="Rosto">Rosto</option>
+                                <option value="Testa">Testa</option>
+                                <option value="Outras Partes">Outras Partes</option>
+                            </select>
+
+                            <div class="_1qCONy-"></div>
+
+                            <div class="div-svg">
+                                <svg class="svg-custom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                        <path fill-rule="evenodd"
+                                              d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                        </path>
+                                    </svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="selecionar" class="col-lg-6">
+                    <label class="label-custom">
+                        <div class="div-span">
+                            <span class="span-custom">Gênero</span>
+                            <select class="selecionar-custom" asp-for="@Model.Tatuagem.Genero" name="Genero">
+                                <option value=" ">Todos</option>
+                                <option value="Un">Unissex</option>
+                                <option value="Ma">Masculina</option>
+                                <option value="Fe">Feminina</option>
+                            </select>
+                            <div class="_1qCONy-"></div>
+
+                            <div class="div-svg">
+                                <svg class="svg-custom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                        <path fill-rule="evenodd"
+                                              d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                        </path>
+                                    </svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="selecionar" class="col-lg-5">
+                    <label class="label-custom">
+                        <div class="div-span">
+                            <span class="span-custom">Cor</span>
+                            <select class="selecionar-custom" asp-for="@Model.Tatuagem.Cor" name="Cor">
+                                <option value=" ">Todas</option>
+                                <option value="Preta">Preta</option>
+                                <option value="Colorida">Colorida</option>
+
+                            </select>
+                            <div class="_1qCONy-"></div>
+
+                            <div class="div-svg">
+                                <svg class="svg-custom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17">
+                                        <path fill-rule="evenodd"
+                                              d="M7.293 10.293L3.707 6.707A1 1 0 014.414 5h7.172a1 1 0 01.707 1.707l-3.586 3.586a1 1 0 01-1.414 0z">
+                                        </path>
+                                    </svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="input-group-append col-lg-1 pb-2">
+                    <button class="btn btn-primary rounded-circle mx-2 my-1 btn-lg btn-info" type="submit">
+                        <i class="ion-search"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+        <br />
+
+    </div>
+
+    <div class="cont-container">
+        <div class="bg-white container">
+            <div class="card-columns">
+                @foreach (var foto in Model.Tatuagens)
+                {
+                    @if (File.Exists(@"wwwroot/images/estudio/FotosTatuagens/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg"))
+                    {
+                        <a data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor: pointer;" onclick="setIds('@foto.ImageName', '@foto.IdEstudio')">
+                            <div class="card">
+                                <img class="card-img-top" src="@("~/images/estudio/FotosTatuagens/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg")" alt="Card image cap"
+                                     asp-append-version="true">
+                            </div>
+                        </a>
+                    }
+
+                }
+            </div>
+
+            <div class="modal fade bd-example-modal-lg modal-custom-click" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content row" style="flex-direction: row;">
+                        <div class="col-7 pl-0">
+                            <img src="~/images/estudio/" class="img-fluid " id="someImage">
+                        </div>
+                        <div class="col-5 ">
+
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="_15c72fq" data-dismiss="modal" aria-label="Close"><svg class="_2LoZB5t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path id="a" d="M12.207 10.793L20 3l1.414 1.414-7.793 7.793L21.414 20 20 21.414l-7.793-7.793-7.793 7.793L3 20l7.793-7.793L3 4.414 4.414 3l7.793 7.793z"></path></svg></svg></button>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-lg-1 text-center">
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 30px; height: 30px;">
+                                </div>
+                                <div class="col-lg-6 pt-2 ml-2">
+                                    <span class="bold-custom">
+                                        Autorrrrrrrrrr
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="">
+                                    In honor of 🌹Dia De Los Muertos 🌹(part healed, part fresh) #diadelosmuertos #dayofthedead #dayofthedeadtattoo
+                                </span>
+                            </div>
+
+                            <hr />
+
+                            <h5>Feito por</h5>
+                            <div class="row mb-2">
+                                <div class="col-lg-1 text-center">
+                                    <img alt="32x32" class="mr-2 rounded-circle mt-2"
+                                         src="/images/icone-perfil.jpg"
+                                         data-holder-rendered="true" style="width: 30px; height: 30px;">
+                                </div>
+                                <div class="col-lg-6 pt-2 ml-2">
+                                    <span class="bold-custom">
+                                        Tatuadorrrrrrrrrrrr
+                                    </span>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <h5>Tipo</h5>
+                            <p>os tipos da foto</p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+
+<script>
+    function setIds(nomeFoto, idEstudio) {
+        document.getElementById("someImage").src = "/images/estudio/FotosTatuagens/" + idEstudio + "/" + nomeFoto + ".jpg";
+    }
+
+    function verificaUrl(url) {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status != 404;
+    }
+</script>

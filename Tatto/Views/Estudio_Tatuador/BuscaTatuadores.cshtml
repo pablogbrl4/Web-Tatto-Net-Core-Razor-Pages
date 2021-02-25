@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Listar Tatuadores";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";
+}
+
+@model BuscaEstudiosTatuadoresViewModel
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+
+
+<div class="bg-white my-10">
+    <div class="card container">
+
+        <div class="mx-3 mt-3">
+            <h1>Tatuadores</h1>
+        </div>
+
+        <div class="card-body card-body-custom">
+
+            <div class="form-inline mb-3">
+                <form asp-action="CadastrarTatuadorbyCpf">
+                    <div class="input-group mb-3">
+                        <input type="text" asp-for="@Model.Pesquisa" name="tatuadorbyCpf" class="form-control"
+                               placeholder="Adicionar Por CPF" aria-label="Adicionar Por CPF" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ion-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstudioTatuador.Tatuador.PrimeiroNome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstudioTatuador.Tatuador.DataDeNascimento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstudioTatuador.Tatuador.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstudioTatuador.Tatuador.Telefone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstudioTatuador.Tatuador.OutroTelefone)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.EstudiosTatuadores)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Tatuador.PrimeiroNome)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Tatuador.DataDeNascimento)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Tatuador.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Tatuador.Telefone)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Tatuador.OutroTelefone)</td>
+                            <td>
+                                <a class="btn btn-danger" asp-action="RemoverEstudio_Tatuador" asp-route-id="@item.Id">Remover</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="my-3 p-3 bg-white rounded box-shadow media-custom">
+                @*<h6 class="border-bottom border-gray pb-2 mb-0">Tatuadores</h6>*@
+                @foreach (var item in Model.EstudiosTatuadores)
+                {
+                    <div class="media text-muted pt-3 border-bottom border-gray row pb-1">
+
+                        <div class="media-body pb-1 mb-0 small lh-125 col-lg-9 text-media-body-custom">
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Nome: </strong>@Html.DisplayFor(modelItem => item.Tatuador.PrimeiroNome)
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Data de Nascimento: </strong>@Html.DisplayFor(modelItem => item.Tatuador.DataDeNascimento)
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Email: </strong>@Html.DisplayFor(modelItem => item.Tatuador.Email)
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">Telefone:</strong> @Html.DisplayFor(modelItem => item.Tatuador.Telefone)
+                            </span>
+                            <span class="d-block">
+                                <strong class="text-gray-dark">OutroTelefone:</strong> @Html.DisplayFor(modelItem => item.Tatuador.OutroTelefone)
+                            </span>
+                        </div>
+
+                        <div class="col-lg-3 pb-1">
+                            <span class="d-flex justify-content-custom mt-2">
+                                <a class="btn btn-danger" asp-action="RemoverEstudio_Tatuador" asp-route-id="@item.Id">Remover</a>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

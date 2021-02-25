@@ -1,0 +1,128 @@
+﻿@{ ViewData["Title"] = "Contrato para Menor";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";}
+
+@model Tatto.Models.Estudio
+
+<style>
+    .h3-custom {
+        text-align: center;
+    }
+
+    .p-custom {
+        text-align: justify;
+        font-size: 20px;
+        line-height: 2.5;
+    }
+
+    #end {
+        text-align: center;
+    }
+
+    .span-custom {
+        font-weight: bold;
+        background-color: mistyrose;
+        text-decoration: underline;
+        padding: 8px;
+    }
+</style>
+
+@section Scripts
+{
+    <script src="~/js/cep.js"></script>
+    <script src="~/js/tatto.js"></script>
+}
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+<div class="bg-white my-10">
+    <div class="container">
+        <form method="post" action="" id="myfrm">
+
+            <h2 class="mt-5">Contrato para Menor de Idade</h2>
+
+            <div class="card card-default">
+                <div class="card-body">
+
+                    <h3 class="h3-custom" >
+                        TERMO DE AUTORIZAÇÃO DE TATUAGEM
+                    </h3><br />
+
+                    <h3 class="h3-custom" >
+                        <span class="span-custom" contentEditable="true">NOME DO ESTÚDIO</span class="span-custom">
+                    </h3><br />
+
+                    <p class="p-custom">
+                        Eu,
+                        <span class="span-custom" contentEditable="true">"Nome do Responsável"</span class="span-custom"> nascido em
+                        <span class="span-custom" contentEditable="true">00/00/0000</span class="span-custom">, Idade
+                        <span class="span-custom" contentEditable="true">00</span class="span-custom"> anos, Estado Civil
+                        <span class="span-custom" contentEditable="true">Solteiro(a)/Casado(a)/Divorciado(a)</span class="span-custom">, RG:
+                        <span class="span-custom" contentEditable="true">00.000.000</span class="span-custom">, Residente e domiciliado na
+                        <span class="span-custom" contentEditable="true">Rua/Av</span class="span-custom">, Bairro
+                        <span class="span-custom" contentEditable="true">NOME DO BAIRRO</span class="span-custom">, cep
+                        <span class="span-custom" contentEditable="true">00000-000</span class="span-custom">, Telefone
+                        <span class="span-custom" contentEditable="true">(00) 0 0000-0000</span class="span-custom">, no gozo pleno de minhas faculdades mentais e psíquicas, pelo presente e na melhor forma de direito, autorizo o estúdio
+                        <span class="span-custom" contentEditable="true">@Model.NomeEstudio</span class="span-custom"> estabelecido na
+                        <span class="span-custom" contentEditable="true">@Model.Endereco, N: @Model.Numero, Bairro: @Model.Bairro,@Model.Complemento, @Model.Cidade - @Model.UF</span class="span-custom"> a executar sobre a pele de meu dependente:
+                        <span class="span-custom" contentEditable="true">Nome do filho(a) Neto(a) ou sobrinho(a)</span class="span-custom">, menor de idade, nascida(o) em
+                        <span class="span-custom" contentEditable="true">00/00/0000</span class="span-custom">,
+                        <span class="span-custom" contentEditable="true">Cidade / UF</span class="span-custom">, portador do RG
+                        <span class="span-custom" contentEditable="true">00.000.000</span class="span-custom">,
+                        que em minha companhia reside e pelo qual sou inteiramente responsável, a gravação da tatuagem representada pelo desenho
+                        <span class="span-custom" contentEditable="true">DIGITE O NOME DO DESENHO DESEJADO</span class="span-custom">,
+                        assumo ainda, na qualidade do genitor do menor, plena responsabilidade pela gravação, eximindo de qualquer responsabilidade civil ou criminal o agente elaborador.
+                    </p>
+
+                    <p class="p-custom" id="end">
+                        <span class="span-custom" contentEditable="true">@Model.Cidade</span class="span-custom">,
+                        <span class="span-custom" contentEditable="true">@DateTime.Today.Day</span class="span-custom"> do
+                        <span class="span-custom" contentEditable="true">@DateTime.Today.Month</span class="span-custom"> de
+                        <span class="span-custom" contentEditable="true">@DateTime.Today.Year</span class="span-custom">
+                    </p>
+
+                    <p class="p-custom" id="end">
+                        Ass. Do Tatuador: ______________________________________________________
+                    </p>
+
+                    <p class="p-custom" id="end">
+                        Ass. Do Menor: _________________________________________________________
+                    </p>
+
+                    <p class="p-custom" id="end">
+                        Ass. Do Responsável: ___________________________________________________
+                    </p>
+
+                </div>
+            </div>
+
+        </form>
+
+        <h2 class="mt-5">Conclusão</h2>
+
+        <div class="card card-default">
+            <div class="row card-body">
+                <div class="form-group col-md-3 mb-1">
+                    <button type="submit" class="btn btn-success btn-block px-4" onclick="myPrint('myfrm')">&nbsp;&nbsp; Imprimir &nbsp;&nbsp;</button>
+                </div>
+                <div class="form-group col-md-6 mb-0">
+
+                </div>
+                <div class="form-group col-md-3 mb-1">
+                    <button type="submit" class="btn btn-danger btn-block px-4 pull-right"> &nbsp; Voltar &nbsp;</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function myPrint(myfrm) {
+        var printdata = document.getElementById(myfrm);
+        newwin = window.open("");
+        newwin.document.write(printdata.outerHTML);
+        newwin.print();
+        newwin.close();
+    }
+</script>

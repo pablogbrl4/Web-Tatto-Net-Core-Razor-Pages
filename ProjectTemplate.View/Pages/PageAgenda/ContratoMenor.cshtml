@@ -1,0 +1,133 @@
+﻿@page
+@model ProjectTemplate.View.Pages.PageAgenda.ContratoMenorModel
+@{
+}
+
+@{ ViewData["Title"] = "Contrato para Menor";
+    Layout = "/Views/Shared/_LayoutAdminEstudio.cshtml";}
+
+
+<style>
+    h3 {
+        text-align: center;
+    }
+
+    p {
+        text-align: justify;
+        font-size: 20px;
+        line-height: 2.5;
+    }
+
+    #end {
+        text-align: center;
+    }
+
+    span {
+        font-weight: bold;
+        background-color: mistyrose;
+        text-decoration: underline;
+        padding: 8px;
+    }
+</style>
+
+@section Scripts
+{
+    <script src="~/js/cep.js"></script>
+    <script src="~/js/tatto.js"></script>
+}
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+<div class="bg-white my-10">
+    <div class="container">
+        <form method="post" action="" id="myfrm">
+
+            <h2 class="mt-5">Contrato para Menor de Idade</h2>
+            <br />
+
+            <div class="card card-default">
+                <div class="card-body">
+
+                    <h3>
+                        TERMO DE AUTORIZAÇÃO DE TATUAGEM
+                    </h3><br />
+
+                    <h3>
+                        @Model.Agenda.Estudio.NomeEstudio
+                    </h3><br />
+
+                    <p>
+                        Eu,
+                        <span contentEditable="true">___________________________________________</span> nascido em
+                        <span contentEditable="true">___/__/___</span>, Idade
+                        <span contentEditable="true">_________</span> anos, Estado Civil
+                        <span contentEditable="true">________________________</span>, RG:
+                        <span contentEditable="true">___.___.___</span>, Residente e domiciliado na
+                        <span contentEditable="true">@Model.Agenda.Cliente.Endereco</span>, Bairro
+                        <span contentEditable="true">@Model.Agenda.Cliente.Bairro</span>, cep
+                        <span contentEditable="true">@Model.Agenda.Cliente.CEP</span>, Telefone
+                        <span contentEditable="true">@Model.Agenda.Cliente.Telefone</span>, no gozo pleno de minhas faculdades mentais e psíquicas, pelo presente e na melhor forma de direito, autorizo o estúdio
+                        <span contentEditable="true">@Model.Agenda.Estudio.NomeEstudio</span> estabelecido na
+                        <span contentEditable="true">@Model.Agenda.Estudio.Endereco, N: @Model.Agenda.Estudio.Numero, Bairro: @Model.Agenda.Estudio.Bairro,@Model.Agenda.Estudio.Complemento, @Model.Agenda.Estudio.Cidade - @Model.Agenda.Estudio.UF</span> a executar sobre a pele de meu dependente:
+                        <span contentEditable="true">@Model.Agenda.Cliente.PrimeiroNome @Model.Agenda.Cliente.SobrenomeCompleto</span>, menor de idade, nascida(o) em
+                        <span contentEditable="true">@Model.Agenda.Cliente.DataDeNascimento</span>,
+                        <span contentEditable="true">@Model.Agenda.Cliente.Cidade - @Model.Agenda.Cliente.UF</span>, portador do CPF
+                        <span contentEditable="true">@Model.Agenda.Cliente.CPF</span>,
+                        que em minha companhia reside e pelo qual sou inteiramente responsável, a gravação da tatuagem representada pelo desenho
+                        <span contentEditable="true">________________________________________________</span>,
+                        assumo ainda, na qualidade do genitor(a) do menor, plena responsabilidade pela gravação, eximindo de qualquer responsabilidade civil ou criminal o agente elaborador.
+                    </p>
+
+                    <p id="end">
+                        <span contentEditable="true">@Model.Agenda.Estudio.Cidade</span>,
+                        <span contentEditable="true">@DateTime.Today.Day</span> do
+                        <span contentEditable="true">@DateTime.Today.Month</span> de
+                        <span contentEditable="true">@DateTime.Today.Year</span>
+                    </p>
+
+                    <p id="end">
+                        Ass. Do Tatuador: ______________________________________________________
+                    </p>
+
+                    <p id="end">
+                        Ass. Do Menor: _________________________________________________________
+                    </p>
+
+                    <p id="end">
+                        Ass. Do Responsável: ___________________________________________________
+                    </p>
+
+                </div>
+            </div>
+
+        </form>
+
+        <h2 class="mt-5">Conclusão</h2>
+
+        <div class="card card-default">
+            <div class="row card-body">
+                <div class="form-group col-md-3 mb-1">
+                    <button type="submit" class="btn btn-success btn-block px-4" onclick="myPrint('myfrm')">&nbsp;&nbsp; Imprimir &nbsp;&nbsp;</button>
+                </div>
+                <div class="form-group col-md-6 mb-0">
+
+                </div>
+                <div class="form-group col-md-3 mb-1">
+                    <a type="button" href="/Agenda/AgendaCliente" class="btn btn-danger btn-block px-4 pull-right"> &nbsp; Ok &nbsp;</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function myPrint(myfrm) {
+        var printdata = document.getElementById(myfrm);
+        newwin = window.open("");
+        newwin.document.write(printdata.outerHTML);
+        newwin.print();
+        newwin.close();
+    }
+</script>

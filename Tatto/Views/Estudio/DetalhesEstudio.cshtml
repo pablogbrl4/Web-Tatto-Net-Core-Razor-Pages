@@ -1,0 +1,175 @@
+﻿@{
+    @using System.IO;
+    ViewData["Title"] = "Detalhes Estúdio";
+    Layout = "/Views/Shared/_LayoutEstudio.cshtml";
+}
+@model Estudio
+
+<link href="~/assets/css/index.css" rel="stylesheet">
+<link href="~/assets/css/addbutton.css" rel="stylesheet">
+
+<div id="carouselExampleControls" class=" carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div id="home" class="intro route bg-image slider-principal">
+                <div class="intro-content display-table">
+                    <div class="table-cell">
+                        <div class="container text-left">
+                            <h6 class="intro-title-custom mb-3">Você está pronto para fazer uma tatuagem?</h6>
+                            <h4 class="intro-title-custom mb-2">@Model.NomeEstudio</h4>
+                            <p>@Model.FraseImpactante</p>
+                            <div class="socials">
+                                <ul>
+                                    @if (@Model.Facebook != null)
+                                    {
+                                        <li><a href="@Model.Facebook" target="_blank"><span class="ico-circle-custom"><i class="ion-social-facebook"></i></span></a></li>
+                                    }
+                                    @if (@Model.Instagram != null)
+                                    {
+                                        <li><a href="@Model.Instagram" target="_blank"><span class="ico-circle-custom"><i class="ion-social-instagram"></i></span></a></li>
+                                    }
+                                    @if (@Model.Twitter != null)
+                                    {
+                                        <li><a href="@Model.Twitter" target="_blank"><span class="ico-circle-custom"><i class="ion-social-twitter"></i></span></a></li>
+                                    }
+                                    @if (@Model.YouTube != null)
+                                    {
+                                        <li><a href="@Model.YouTube" target="_blank"><span class="ico-circle-custom"><i class="ion-social-youtube"></i></span></a></li>
+                                    }
+                                    @if (@Model.LinkedIn != null)
+                                    {
+                                        <li><a href="@Model.LinkedIn" target="_blank"><span class="ico-circle-custom"><i class="ion-social-linkedin"></i></span></a></li>
+                                    }
+                                    @if (@Model.WhatsApp != null)
+                                    {
+                                        <li><a href="@("https://api.whatsapp.com/send?phone=55" + @Model.WhatsApp)" target="_blank"><span class="ico-circle-custom"><i class="ion-social-whatsapp"></i></span></a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                            @if (@Model.EstudioTatuador.Count > 0)
+                            {
+                                <div class="wrap">
+                                    <a class="button-animado" asp-controller="Agenda" asp-action="CadastroAgenda" asp-route-id="@Model.NomeDeUsuario">Marque Aqui Sua Seção de Tatuagem</a>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<section id="estudio">
+    <div class="bg-whitepy-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box text-center">
+                        <h3 class="title-a">
+                            Conheça o Estudio
+                        </h3>
+                        <p class="subtitle-a">
+                            Sinta-se em Casa
+                        </p>
+                        <div class="line-mf"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-columns">
+                @foreach (var foto in Model.FotosEstudio)
+                {
+                    @if (File.Exists(@"wwwroot/images/estudio/FotosEstudios/" + @foto.IdEstudio + "/" + @foto.ImageName + ".jpg"))
+                    {
+                        <a href="estudio.html">
+                            <div class="card">
+                                <img class="card-img-top" src="@("~/images/estudio/FotosEstudios/" + foto.IdEstudio + "/" + @foto.ImageName + ".jpg")" alt="Card image cap"
+                                     asp-append-version="true">
+                            </div>
+                        </a>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tatuadores">
+    <div class="bg-dark-custom py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box text-center">
+                        <h3 class="title-a-dark">
+                            Tatuadores
+                        </h3>
+                        <p class="subtitle-a">
+                            Conheça nosso Time
+                        </p>
+                        <div class="line-mf-dark"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-columns">
+                @foreach (var tatuador in Model.EstudioTatuador)
+                {
+                    if (tatuador.Tatuador != null)
+                    {
+                        <a asp-area="" asp-controller="Tatuador" asp-action="PortifolioTatuador" asp-route-id="@tatuador.Tatuador.NomeDeUsuario">
+                            <div class="card">
+                                @if (File.Exists(@"wwwroot/images/tatuador/fotoTatuador/" + @tatuador.IdTatuador + ".jpg"))
+                                {
+                                    <img class="card-img-top" src="@("~/images/tatuador/fotoTatuador/" + @tatuador.IdTatuador + ".jpg")" alt="Card image cap"
+                                         asp-append-version="true">
+                                }
+                                else
+                                {
+                                    <img class="card-img-top" src="/images/icone-perfil.jpg" alt="Card image cap">
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: black;">
+                                        @if (tatuador.Tatuador != null)
+                                        {
+                                            @tatuador.Tatuador.PrimeiroNome
+                                        }
+
+                                    </h5>
+                                </div>
+                            </div>
+                        </a>
+                    }
+
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="btn-whatsapp">
+    <a href="@("https://api.whatsapp.com/send?phone=55" + @Model.Telefone)"
+       target="_blank">
+        <img class="whatsapp" src="~/assets/img/whatsapp-estudio.png" />
+    </a>
+</div>
+
+@if (@Model.EstudioTatuador.Count > 0)
+{
+    <div class="wrap">
+        <a class="button-animado-fixed" asp-controller="Agenda" asp-action="CadastroAgenda" asp-route-id="@Model.NomeDeUsuario">Marcar seção de tatuagem</a>
+    </div>
+}
+    <br />
+    <br />

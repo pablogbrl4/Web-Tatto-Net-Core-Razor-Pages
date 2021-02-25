@@ -1,0 +1,50 @@
+﻿@{
+    @using System.IO;
+    ViewData["Title"] = "Detalhes Estúdio";
+    Layout = "/Views/Shared/_LayoutEstudioLinks.cshtml";
+}
+@model Estudio
+
+<link href="~/assets/css/navdark.css" rel="stylesheet">
+
+<section id="shop" class="my-10">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box text-center">
+                    <h3 class="title-a">
+                        Shopping
+                    </h3>
+                    <p class="subtitle-a">
+                        Compre Vestuarios em nossa Loja
+                    </p>
+                    <div class="line-mf"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var shopping in Model.Shopping)
+            {
+                @if (File.Exists(@"wwwroot/images/estudio/FotosShoping/" + shopping.IdEstudio + "/" + shopping.ImageName + ".jpg"))
+                {
+                    <div class="col-md-4">
+                        <div class="card card-blog">
+                            <div class="card-img">
+                                <a href="blog-single.html">
+                                    <img src="@("~/images/estudio/FotosShoping/" + shopping.IdEstudio + "/" + shopping.ImageName + ".jpg")" alt="" class="img-fluid"
+                                         asp-append-version="true">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title"><a href="blog-single.html">@shopping.ImageName</a></h3>
+                                <p class="card-description">
+                                    @shopping.Preco
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section><!-- End Blog Section -->
